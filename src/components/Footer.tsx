@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="flex flex-col items-center text-center">
           <Link href="/" className="relative h-48 w-full max-w-[768px] mb-8 transition-opacity hover:opacity-80">
             <Image 
-              src="/images/logo.png" 
+              src="/images/logo_completa.png" 
               alt="Unum People Logo" 
               fill
               className="object-contain"
