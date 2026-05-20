@@ -1,39 +1,25 @@
 # Unum People Creative Solutions
 
-## Missão
-Conectar e aproximar pessoas através da tecnologia, desenvolvendo produtos como serviços (SaaS) inovadores e criativos.
+A Unum People foca em conectar e aproximar pessoas. Acreditamos que as verdadeiras oportunidades surgem através de conexões genuínas.
 
-## Identidade Visual
-A identidade visual foi construída com base no logotipo da empresa, utilizando uma paleta de cores moderna e profissional:
-- **Brand Blue (`#3D5D97`)**: Utilizado para destaques e elementos de ação.
-- **Brand Dark (`#44516F`)**: Utilizado para textos principais e contraste.
-- **Brand Accent (`#CCBB9F`)**: Tom auxiliar para refinamento visual.
+## 🚀 O Ecossistema Unum People
+Nosso ecossistema é desenhado para reduzir a distância entre empresas e seus clientes ideais:
+- **Sites de Alta Performance**: Design minimalista e vanguardista focado em conversão.
+- **Unum People CRM**: Gestão ágil de leads com notificações push e integração com IA.
+- **Gestão de Tráfego**: Atribuição inteligente para otimizar o ROI de anúncios (Google Ads).
 
-## Estrutura do Site (V1 - Em Construção)
-O site foi desenvolvido utilizando **Next.js**, **TypeScript** e **Tailwind CSS**, com foco em um design ultra-minimalista e elegante.
+## 🛠️ Stack Técnica
+- **Framework**: [Next.js](https://nextjs.org/)
+- **Estilização**: [Tailwind CSS](https://tailwindcss.com/)
+- **Linguagem**: [TypeScript](https://www.typescriptlang.org/)
 
-### Componentes Principais:
-- **Header**: 
-  - Design modular utilizando o símbolo e o texto do logotipo separadamente.
-  - Posicionamento à esquerda para um visual corporativo clássico.
-  - Efeito *glassmorphism* (fundo translúcido com desfoque).
-- **Body**:
-  - Mensagem de "Em construção" com tipografia robusta e animações suaves.
-  - Foco total na missão da empresa.
-- **Footer**:
-  - Logotipo completo em destaque (ampliado para máximo impacto visual).
-  - Descrição da missão centralizada.
-  - Layout limpo, sem distrações de links de navegação.
+## 📖 Documentação
+Consulte a pasta `.specs/` para detalhes sobre a implementação, roadmap e regras de engenharia.
+- [Visão do Projeto](.specs/project/PROJECT.md)
+- [Roadmap](.specs/project/ROADMAP.md)
+- [Guia do Agente](AGENTS.md)
 
-## Tecnologias Utilizadas
-- **Framework**: Next.js (App Router)
-- **Estilização**: Tailwind CSS
-- **Linguagem**: TypeScript
-- **Ícones/Imagens**: PNGs otimizados com `next/image`
-
-## Desenvolvimento
-Para rodar o projeto localmente:
-
+## 🏁 Como começar
 ```bash
 npm install
 npm run dev
