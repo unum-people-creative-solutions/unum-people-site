@@ -1,9 +1,10 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Section } from './Section';
-import { Shield, Zap, Star, Trophy, Users, Globe } from 'lucide-react';
+import { Globe } from 'lucide-react';
 
 const clients = [
   { 
@@ -49,13 +50,13 @@ export function LogoCloud() {
             >
               <div className="relative aspect-video rounded-3xl overflow-hidden bg-brand-dark shadow-2xl transition-transform duration-500 group-hover:-translate-y-2 border border-brand-dark/10">
                 {/* Real Website Screenshot using Microlink */}
-                <div className="w-full h-full bg-brand-dark">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img 
+                <div className="w-full h-full bg-brand-dark relative">
+                  <Image 
                     src={`https://api.microlink.io?url=${encodeURIComponent(client.url)}&screenshot=true&meta=false&embed=screenshot.url`}
                     alt={`Preview do site ${client.name}`}
-                    className="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity duration-700"
-                    loading="lazy"
+                    fill
+                    className="object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
 
