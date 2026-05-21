@@ -11,14 +11,17 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'api.microlink.io',
+        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'unumpeople.com.br',
+        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'www.unumpeople.com.br',
+        pathname: '/**',
       },
     ],
   },
