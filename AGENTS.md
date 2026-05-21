@@ -7,8 +7,12 @@ Site principal da Unum People. Focado em transmitir a missão da empresa com um 
 
 ## 🛠️ Metodologia e Regras
 1.  **Metodologia**: Utilize estritamente o `tlc-spec-driven` para qualquer nova funcionalidade ou refatoração. Consulte os specs em `.specs/`.
-2.  **Regras Globais**: Siga rigorosamente o arquivo [../rules.md](../rules.md) para padrões de segurança e engenharia (embora este site não possua tracking de ads no momento).
-3.  **Baseline**: Consulte o arquivo [.specs/baseline_unum_people_site_spec.md](.specs/baseline_unum_people_site_spec.md) para entender o estado atual do projeto.
+2.  **Testes Obrigatórios**: NENHUMA funcionalidade é considerada "concluída" sem testes automatizados correspondentes.
+    - Use **Vitest/RTL** para componentes e lógica (acessibilidade primeiro).
+    - Use **Playwright** para fluxos críticos de conversão.
+3.  **Visão e Roadmap**: Consulte [.specs/project/PROJECT.md](.specs/project/PROJECT.md) e [.specs/project/ROADMAP.md](.specs/project/ROADMAP.md).
+4.  **Estado do Projeto**: Consulte [.specs/project/STATE.md](.specs/project/STATE.md) para decisões e pendências.
+5.  **Regras Globais**: Siga rigorosamente as regras de engenharia e segurança da Unum People. (Referência: [rules.md](rules.md)).
 
 ## 🧰 Skills Recomendadas
 - `tlc-spec-driven`: Gestão de ciclo de vida do desenvolvimento.

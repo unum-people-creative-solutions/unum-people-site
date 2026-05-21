@@ -1,0 +1,14 @@
+services:
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.60.0-jammy
+    volumes:
+      - .:/work
+    working_dir: /work
+    ipc: host
+    environment:
+      - NODE_ENV=test
+      - NEXT_PUBLIC_WHATSAPP_NUMBER=5511988887777
+      - NEXT_PUBLIC_API_GATEWAY_URL=https://api.test.com
+      - NEXT_PUBLIC_API_KEY=test-key
+    command: npx playwright test --workers=1
+    network_mode: host
