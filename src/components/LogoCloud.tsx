@@ -52,7 +52,7 @@ export function LogoCloud() {
                 {/* Real Website Screenshot using Microlink */}
                 <div className="w-full h-full bg-brand-dark relative">
                   <Image 
-                    src={`https://api.microlink.io?url=${encodeURIComponent(client.url)}&screenshot=true&meta=false&embed=screenshot.url`}
+                    src={`https://api.microlink.io/?url=${encodeURIComponent(client.url)}&screenshot=true&meta=false&embed=screenshot.url`}
                     alt={`Preview do site ${client.name}`}
                     fill
                     className="object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity duration-700"
