@@ -30,6 +30,7 @@ const packages: Package[] = [
     features: [
       "Site Institucional One-Page",
       "Design Responsivo",
+      "Estrutura Otimizada para SEO",
       "Hospedagem Inclusa",
       "Certificado SSL (Segurança)",
       "Suporte via WhatsApp"
@@ -45,7 +46,8 @@ const packages: Package[] = [
     description: "O combo perfeito para escala: Site + Gestão de Leads.",
     features: [
       "Site Institucional Completo",
-      "Unum People CRM (App Android Inclusivo)",
+      "Estrutura Otimizada para SEO",
+      "Unum People CRM (App Android Incluso)",
       "Notificações Push em Tempo Real",
       "1 Landing Page de Alta Conversão",
       "Integração com o Google Ads",
@@ -101,6 +103,11 @@ export default function Servicos() {
 
       {/* Pricing Table */}
       <Section id="precos" className="pb-32">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-black text-brand-dark tracking-tighter">
+            Escolha como iniciaremos sua <span className="text-brand-blue">Jornada</span>.
+          </h2>
+        </div>
         <div className="grid md:grid-cols-3 gap-8 items-start">
           {packages.map((pkg, index) => (
             <motion.div
@@ -111,19 +118,19 @@ export default function Servicos() {
               className={cn(
                 "relative p-10 rounded-[3rem] border transition-all duration-300 flex flex-col",
                 pkg.popular 
-                  ? "bg-brand-dark text-white border-brand-dark shadow-2xl scale-105 z-10" 
+                  ? "bg-brand-blue text-white border-brand-blue shadow-2xl scale-105 z-10" 
                   : "bg-white text-brand-dark border-brand-dark/5 hover:border-brand-blue/20 shadow-xl"
               )}
             >
               {pkg.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-blue text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-orange text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
                   Mais Popular
                 </div>
               )}
 
               <div className="flex items-center gap-4 mb-8">
                 <div className={cn("p-3 rounded-2xl bg-white/10", !pkg.popular && "bg-brand-soft")}>
-                  <pkg.icon className={cn("w-6 h-6", pkg.color)} />
+                  <pkg.icon className={cn("w-6 h-6", pkg.popular ? "text-white" : pkg.color)} />
                 </div>
                 <h3 className="text-2xl font-black tracking-tight">{pkg.name}</h3>
               </div>
@@ -174,7 +181,7 @@ export default function Servicos() {
                     : "bg-brand-dark text-white hover:bg-brand-blue"
                 )}
               >
-                Selecionar Pacote
+                Começar Jornada
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </motion.div>

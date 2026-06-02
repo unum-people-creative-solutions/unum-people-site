@@ -17,6 +17,11 @@ const clients = [
     url: 'https://centrorecriar.com.br/',
     description: 'Plataforma de Saúde & Conversão'
   },
+  { 
+    name: 'HS Personal Trainer', 
+    url: 'https://hernansampaio.com.br/',
+    description: 'Landing Page & Performance'
+  },
 ];
 
 export function LogoCloud() {
@@ -31,11 +36,11 @@ export function LogoCloud() {
         >
           <h2 className="text-sm font-black uppercase tracking-[0.3em] text-brand-blue mb-4">Portfólio de Confiança</h2>
           <p className="text-3xl md:text-4xl font-black text-brand-dark tracking-tighter">
-            Projetos que <span className="text-brand-blue">conectam</span> você ao seu cliente.
+            Onde a tecnologia se torna a <span className="text-brand-blue">ponte invisível</span> que aproxima você do seu cliente.
           </p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto">
           {clients.map((client, index) => (
             <motion.a
               key={index}
@@ -65,7 +70,7 @@ export function LogoCloud() {
                   <div className="text-white">
                     <div className="text-xs font-black uppercase tracking-widest mb-2">Visitar Projeto</div>
                     <div className="text-2xl font-black tracking-tighter leading-tight">
-                      {client.url.replace('https://', '')}
+                      {client.url.replace('https://', '').replace(/\/$/, '')}
                     </div>
                   </div>
                 </div>
