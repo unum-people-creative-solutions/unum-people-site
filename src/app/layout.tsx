@@ -1,23 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { TrackingInitializer } from "@/components/TrackingInitializer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const poppins = Poppins({
+  weight: ["300", "400", "600", "700"],
+  variable: "--font-poppins",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "Unum People | Conectando Pessoas através da Tecnologia",
-  description: "Especialistas em Sites de Alta Performance, Unum People CRM e Gestão de Tráfego. Reduzimos a distância entre sua empresa e seus clientes ideais.",
+  description: "O caminho mais curto entre você e o seu cliente. Especialistas em Sites de Alta Performance, CRM e Gestão de Tráfego.",
   keywords: ["Unum People", "Creative Solutions", "Sites de Alta Performance", "Unum People CRM", "Google Ads", "Gestão de Tráfego", "Landing Pages"],
   authors: [{ name: "Unum People Team" }],
   metadataBase: new URL("https://unumpeople.com.br"),
@@ -26,14 +22,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Unum People | Conectando Pessoas através da Tecnologia",
-    description: "Especialistas em Sites de Alta Performance, Unum People CRM e Gestão de Tráfego.",
+    description: "O caminho mais curto entre você e o seu cliente.",
     url: "https://unumpeople.com.br",
     siteName: "Unum People",
     locale: "pt_BR",
     type: "website",
     images: [
       {
-        url: "/images/logo_completa.png",
+        url: "/images/logo.png",
         width: 1200,
         height: 630,
         alt: "Unum People Logo",
@@ -43,8 +39,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Unum People | Conectando Pessoas através da Tecnologia",
-    description: "Especialistas em Sites de Alta Performance, Unum People CRM e Gestão de Tráfego.",
-    images: ["/images/logo_completa.png"],
+    description: "O caminho mais curto entre você e o seu cliente.",
+    images: ["/images/logo.png"],
   },
   icons: {
     icon: '/icon.png',
@@ -61,8 +57,8 @@ export default function RootLayout({
     "@type": "ProfessionalService",
     "name": "Unum People Creative Solutions",
     "url": "https://unumpeople.com.br",
-    "logo": "https://unumpeople.com.br/images/logo_completa.png",
-    "description": "Especialistas em Sites de Alta Performance, Unum People CRM e Gestão de Tráfego.",
+    "logo": "https://unumpeople.com.br/images/logo.png",
+    "description": "O caminho mais curto entre você e o seu cliente.",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "BR"
@@ -75,7 +71,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}>
+    <html lang="pt-BR" className={`${poppins.variable} antialiased scroll-smooth`}>
       <head>
         <script
           type="application/ld+json"

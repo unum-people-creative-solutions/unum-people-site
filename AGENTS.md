@@ -1,25 +1,36 @@
-# Unum People Creative Solutions - Guia do Agente
+# AGENTS.md - Orientação e Orquestração (TLC 2.0)
 
-Este arquivo orienta a atuação da IA neste repositório.
+Este repositório opera sob a metodologia **Elite SaaS** e o ciclo de vida **TLC 2.0**.
 
-## 🎯 Contexto do Projeto
-Site principal da Unum People. Focado em transmitir a missão da empresa com um design ultra-minimalista, elegante e "vanguardista".
+## 🏛️ Máquina de Estados do Ciclo de Vida
+Diretriz absoluta: **NENHUMA LINHA DE CÓDIGO DE PRODUÇÃO OU TESTE DEVE SER ESCRITA ANTES DA FASE 5.**
 
-## 🛠️ Metodologia e Regras
-1.  **Metodologia**: Utilize estritamente o `tlc-spec-driven` para qualquer nova funcionalidade ou refatoração. Consulte os specs em `.specs/`.
-2.  **Testes Obrigatórios**: NENHUMA funcionalidade é considerada "concluída" sem testes automatizados correspondentes.
-    - Use **Vitest/RTL** para componentes e lógica (acessibilidade primeiro).
-    - Use **Playwright** para fluxos críticos de conversão.
-3.  **Visão e Roadmap**: Consulte [.specs/project/PROJECT.md](.specs/project/PROJECT.md) e [.specs/project/ROADMAP.md](.specs/project/ROADMAP.md).
-4.  **Estado do Projeto**: Consulte [.specs/project/STATE.md](.specs/project/STATE.md) para decisões e pendências.
-5.  **Regras Globais**: Siga rigorosamente as regras de engenharia e segurança da Unum People. (Referência: [rules.md](rules.md)).
+1. **FASE 1: DISCOVERY** - Alinhamento de escopo e restrições.
+2. **FASE 2: ARCHITECTURE** - Mapeamento via `codenavi` e criação do **Tech Design Doc (TDD)** (`TECH-DESIGN-*.md`). O TDD (Technical Design Document) é a base técnica para toda a implementação, não apenas um plano de testes.
+3. **FASE 3: DESIGN & UI** - Definição visual via `frontend-blueprint`.
+4. **FASE 4: SPECIFICATION** - Backlog e Planos de Teste via `tlc-spec-driven`, baseados no Tech Design Doc.
+5. **FASE 5: EXECUTION** - Implementação via Pipeline de Personas.
 
-## 🧰 Skills Recomendadas
-- `tlc-spec-driven`: Gestão de ciclo de vida do desenvolvimento.
-- `codenavi`: Para explorar a estrutura minimalista e reuso de componentes de marca.
-- `tailwind-expert`: Para manter a precisão do design ultra-minimalista.
-- `web-design-guidelines`: Para auditar a UX sofisticada do site.
+## 🎭 Pipeline de Execução (Handoff Sequencial)
+A Fase 5 exige a separação rígida de responsabilidades:
 
-## 📝 Comandos Úteis
-- `npm run dev`: Ambiente de desenvolvimento.
-- `npm run build`: Build de produção.
+### 1. Agente QA (Analista de Qualidade)
+- **Objetivo**: Criar testes automatizados que falham (**RED**) baseados nas especificações da Fase 4 e no Tech Design Doc.
+- **Foco**: Acessibilidade (`getByRole`), Happy Path e Edge Cases.
+- **Handoff**: "Testes escritos e falhando. Handoff para o Agente Executor."
+
+### 2. Agente Executor (Engenheiro de Software)
+- **Objetivo**: Implementar o código mínimo para passar os testes (**GREEN**).
+- **Skills**: `tailwind-expert`, `react-best-practices`, `terraform-expert`, etc.
+- **Handoff**: "Código implementado. Testes passando. Handoff para o Agente Auditor."
+
+### 3. Agente Auditor (Revisor)
+- **Objetivo**: Validar segurança (`security-best-practices`), convenções e cobertura.
+- **Handoff**: "Auditoria concluída. Task marcada como DONE."
+
+## 🛡️ Regras e Harness
+Consulte estritamente o arquivo `.specs/RULES.md` para restrições técnicas e comportamentais inquebráveis.
+
+## 📝 Comandos e Contexto Local
+Unum Institutional. Next.js 15, Ultra-minimalist design.
+

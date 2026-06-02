@@ -33,7 +33,7 @@ const Footer = () => {
             />
           </Link>
           <p className="text-brand-dark/60 max-w-sm leading-relaxed font-medium">
-            Conectando e aproximando pessoas através de soluções tecnológicas criativas e inovadoras. Reduzindo distâncias, criando pontes.
+            O caminho mais curto entre você e o seu cliente.
           </p>
         </div>
 
@@ -108,7 +108,7 @@ const Footer = () => {
       
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-brand-dark/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-brand-dark/40 font-bold uppercase tracking-widest">
         <div>
-          &copy; {new Date().getFullYear()} Unum People Creative Solutions.
+          &copy; 2026 Unum People - Creative Solutions. Todos os direitos reservados.
         </div>
         <div className="flex gap-8">
           <span>Brasil</span>

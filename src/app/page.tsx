@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Section } from '@/components/Section';
+import { BrandValues } from '@/components/BrandValues';
 import { LayoutGrid, Database, TrendingUp, Smartphone, ArrowRight, BarChart3, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -28,7 +29,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-6xl md:text-8xl font-black text-brand-dark mb-8 tracking-tighter leading-tight"
           >
-            A tecnologia que <span className="text-brand-blue">conecta</span> e <span className="text-brand-accent">aproxima</span> pessoas.
+            A tecnologia é a <span className="text-brand-blue">ponte invisível</span>.
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -36,7 +37,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-xl md:text-2xl text-brand-dark/70 mb-12 leading-relaxed max-w-2xl mx-auto font-medium"
           >
-            Reduzimos a distância entre empresas e seus clientes ideais através de um ecossistema digital humanizado.
+            Encurtar distâncias, simplificar vendas. O caminho mais curto entre você e o seu cliente.
           </motion.p>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -65,17 +66,14 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl font-black text-brand-dark mb-8 tracking-tighter">
-              Conexões Genuínas são o <span className="text-brand-blue">Motor das Oportunidades</span>.
+              Conexões genuínas não precisam de <span className="text-brand-blue">intermediários</span>.
             </h2>
             <div className="space-y-6 text-lg text-brand-dark/80 leading-relaxed font-medium">
               <p>
-                Acreditamos que, em um mundo cada vez mais digital, a verdadeira vantagem competitiva reside na capacidade de se manter humano.
+                Acreditamos que a complexidade técnica não deve ser uma barreira entre você e o seu cliente. O verdadeiro papel da tecnologia é eliminar a fricção do microempreendedor.
               </p>
               <p>
-                Não construímos apenas sites ou sistemas de gestão. Criamos pontes que permitem que sua mensagem chegue com clareza a quem realmente precisa dela.
-              </p>
-              <p className="italic text-brand-blue">
-                &quot;A tecnologia deve servir à conexão, e nunca substituí-la.&quot;
+                Não construímos apenas sites ou sistemas de gestão. Nós criamos ferramentas utilitárias e diretas que devolvem a você o controle sobre as suas vendas.
               </p>
             </div>
           </motion.div>
@@ -84,16 +82,11 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative aspect-square rounded-3xl overflow-hidden bg-white p-12 flex items-center justify-center shadow-2xl border border-brand-dark/5"
+            className="relative h-full rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center p-8 bg-[linear-gradient(135deg,var(--brand-blue)_0%,var(--brand-purple)_50%,var(--brand-orange)_100%)] min-h-[300px]"
           >
-            <div className="relative w-full h-full">
-              <Image 
-                src="/images/logo_fundo_branco.jpeg" 
-                alt="Unum People Creative Solutions - Manifesto" 
-                fill
-                className="object-contain"
-              />
-            </div>
+            <p className="text-3xl md:text-4xl font-light italic text-center text-white/90 leading-tight">
+              &quot;A tecnologia é a ponte invisível; a relação direta e o resultado prático são o foco.&quot;
+            </p>
           </motion.div>
         </div>
       </Section>
@@ -105,7 +98,7 @@ export default function Home() {
             O Ecossistema <span className="text-brand-blue">Unum People</span>
           </h2>
           <p className="text-xl text-brand-dark/60 max-w-2xl mx-auto font-medium">
-            Três pilares fundamentais trabalhando em harmonia para o crescimento do seu negócio.
+            Um único ecossistema indivisível trabalhando em harmonia para estabelecer pontes legítimas e o crescimento do seu negócio.
           </p>
         </div>
 
@@ -216,7 +209,7 @@ export default function Home() {
               <span className="font-bold tracking-widest uppercase text-xs text-brand-accent">Exclusivo Unum People CRM</span>
             </div>
             <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">
-              Seu negócio no <span className="text-brand-blue">bolso</span>.
+              Seu negócio no <span className="text-brand-accent">bolso</span>.
             </h2>
             <p className="text-xl text-white/70 mb-10 leading-relaxed font-medium">
               Receba notificações push instantâneas no seu Android assim que um novo lead chegar. Atendimento em segundos, conexão imediata.
@@ -278,6 +271,27 @@ export default function Home() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </Section>
+
+      <BrandValues />
+
+      {/* Final CTA Banner */}
+      <Section className="bg-[linear-gradient(135deg,var(--brand-blue)_0%,var(--brand-purple)_50%,var(--brand-orange)_100%)] text-white text-center py-24">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">
+            Pronto para gerar frutos reais?
+          </h2>
+          <p className="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed font-medium">
+            Vamos transformar a realidade do seu negócio juntos.
+          </p>
+          <Link 
+            href="/servicos" 
+            className="inline-flex items-center gap-2 px-8 py-4 text-sm font-black uppercase tracking-widest bg-white text-brand-dark rounded-full hover:bg-brand-soft transition-all group"
+          >
+            Começar Jornada
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </Section>
     </div>

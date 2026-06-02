@@ -2,26 +2,30 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #14142b;
   
-  --brand-blue: #3D5D97;
-  --brand-dark: #44516F;
-  --brand-accent: #CCBB9F;
-  --brand-soft: #F8F9FA;
+  --brand-blue: #0A1C82;
+  --brand-purple: #6B00D7;
+  --brand-orange: #FF3D00;
+  --support-grey: #6E7191;
+  --brand-soft: #f8fafc;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-poppins);
   
   --color-brand-blue: var(--brand-blue);
-  --color-brand-dark: var(--brand-dark);
-  --color-brand-accent: var(--brand-accent);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-orange: var(--brand-orange);
+  --color-support-grey: var(--support-grey);
+  
+  --color-brand-dark: var(--brand-blue); /* Fallback for older classes */
+  --color-brand-accent: var(--brand-orange); /* Fallback */
   --color-brand-soft: var(--brand-soft);
   
-  --bg-gradient-brand: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-blue) 100%);
+  --bg-gradient-brand: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-purple) 50%, var(--brand-orange) 100%);
 }
 
 @media (prefers-color-scheme: dark) {
