@@ -36,7 +36,7 @@ const NeonBridgeBackground = () => {
       >
         <div 
           className="absolute inset-0"
-          style={{ 
+          style={{
             // The actual bridge shape mask
             WebkitMaskImage: 'url(/images/bridge-mask.webp)',
             maskImage: 'url(/images/bridge-mask.webp)',
@@ -45,10 +45,9 @@ const NeonBridgeBackground = () => {
             // Focal point: 80% for mobile (perspective without empty space), center for desktop
             WebkitMaskPosition: 'var(--bridge-pos, center)',
             maskPosition: 'var(--bridge-pos, center)',
-            // @ts-ignore
             maskMode: 'luminance',
             WebkitMaskMode: 'luminance'
-          }}
+          } as React.CSSProperties & { maskMode?: string; WebkitMaskMode?: string }}
         >
           <style jsx>{`
             div { --bridge-pos: 80% center; }
