@@ -13,14 +13,24 @@ const clients = [
     description: 'Site Institucional & Gestão de Leads'
   },
   { 
-    name: 'Centro de Psicologia Recriar', 
-    url: 'https://centrorecriar.com.br/',
-    description: 'Plataforma de Saúde & Conversão'
-  },
-  { 
     name: 'HS Personal Trainer', 
     url: 'https://hernansampaio.com.br/',
     description: 'Landing Page & Performance'
+  },
+  { 
+    name: 'Garagem Comunicação Visual', 
+    url: 'https://garagemcomunicacaovisual.com.br/',
+    description: 'Site Institucional & Performance'
+  },
+  { 
+    name: 'Eliziario Advogados', 
+    url: 'https://eliziarioadv.com.br/',
+    description: 'Site Institucional & Conversão'
+  },
+  { 
+    name: 'Centro de Psicologia Recriar', 
+    url: 'https://centrorecriar.com.br/',
+    description: 'Plataforma de Saúde & Conversão'
   },
 ];
 
