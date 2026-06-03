@@ -2,11 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: [
-      'api.microlink.io',
-      'unumpeople.com.br',
-      'www.unumpeople.com.br'
-    ],
     remotePatterns: [
       {
         protocol: 'https',
