@@ -99,12 +99,55 @@ describe('Term page (/termos/[termId]/[version])', () => {
   });
 
   // Propagação de erro (base para T09 — error.tsx trata isso na árvore de componentes)
-  it('propaga o erro quando o endpoint falha por outro motivo (não 404)', async () => {
+  it('propaga o erro quando o endpoint falha por outro motivo (não 404/4xx)', async () => {
     vi.stubGlobal(
       'fetch',
       vi.fn().mockResolvedValue({ ok: false, status: 500 })
     );
 
     await expect(TermPage({ params })).rejects.toThrow(/status 500/);
+  });
+
+  // Regressão de produção: BuildSiteURL (backend) gera links como /termos/{id}/v1 —
+  // o Next.js captura o segmento de versão literalmente como "v1", com o prefixo.
+  // O fetch pro backend precisa remover esse prefixo antes de chamar
+  // /public/terms/{id}/{version}, que espera um inteiro puro (strconv.Atoi).
+  it('remove o prefixo "v" da versão da URL antes de chamar o endpoint público', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({
+        term_name: 'Termo',
+        version_number: 1,
+        content_html: '<p>x</p>',
+        published_at: '2026-05-01T12:00:00Z',
+      }),
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    const paramsWithVPrefix = Promise.resolve({ termId: 'term-1', version: 'v1' });
+    await TermPage({ params: paramsWithVPrefix });
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining('/public/terms/term-1/1'),
+      expect.anything()
+    );
+    // Nunca deve sobrar o "v" no path chamado no backend.
+    const calledUrl = fetchMock.mock.calls[0][0] as string;
+    expect(calledUrl).not.toContain('/v1');
+  });
+
+  // Blindagem: qualquer 4xx (não só 404) deve virar "não encontrado", nunca a
+  // tela de erro genérica — evita que um bug de formato de parâmetro (como o
+  // desta regressão) apareça pro usuário como "erro 500", quando na real o
+  // termo/versão só não bateu no formato esperado pelo backend.
+  it('trata qualquer 4xx (ex: 400 de versão inválida) como não encontrado, não como erro', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue({ ok: false, status: 400 })
+    );
+
+    await expect(TermPage({ params })).rejects.toThrow('NEXT_NOT_FOUND');
+    expect(notFoundMock).toHaveBeenCalledTimes(1);
   });
 });

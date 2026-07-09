@@ -14,12 +14,18 @@ interface PublicTermResponse {
 }
 
 async function fetchTerm(termId: string, version: string): Promise<PublicTermResponse | null> {
+  // BuildSiteURL (backend) gera links como /termos/{id}/v1 — o segmento de
+  // versão chega aqui com o prefixo "v". O endpoint público espera um
+  // inteiro puro (strconv.Atoi no backend), então o prefixo precisa ser
+  // removido antes da chamada.
+  const numericVersion = version.replace(/^v/i, '');
+
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/public/terms/${termId}/${version}`,
+    `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/public/terms/${termId}/${numericVersion}`,
     { cache: 'no-store' }
   );
 
-  if (response.status === 404) {
+  if (response.status >= 400 && response.status < 500) {
     return null;
   }
   if (!response.ok) {
