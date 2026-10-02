@@ -74,6 +74,16 @@ const Footer = () => {
                 </Link>
               )}
             </li>
+            <li>
+              <Link href="/contato" className="text-sm font-bold text-brand-dark/60 hover:text-brand-blue transition-colors">
+                Contato
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacidade" className="text-sm font-bold text-brand-dark/60 hover:text-brand-blue transition-colors">
+                Privacidade
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -111,6 +121,8 @@ const Footer = () => {
           &copy; 2026 Unum People - Creative Solutions. Todos os direitos reservados.
         </div>
         <div className="flex gap-8">
+          <Link href="/privacidade" className="hover:text-brand-blue transition-colors">Privacidade</Link>
+          <Link href="/contato" className="hover:text-brand-blue transition-colors">Contato</Link>
           <span>Brasil</span>
           <span>Sempre Conectados</span>
         </div>

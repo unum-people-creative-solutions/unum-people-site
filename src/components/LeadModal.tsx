@@ -10,6 +10,7 @@ import { PatternFormat } from 'react-number-format';
 import { cn } from '@/lib/utils';
 import { ingestLead } from '@/lib/crm';
 import { getStoredTrackingData } from '@/lib/tracking';
+import Link from 'next/link';
 
 const leadSchema = z.object({
   name: z.string().min(3, 'Nome deve ter pelo menos 3 caracteres'),
@@ -196,7 +197,11 @@ export const LeadModal = ({ isOpen, onClose, packageName, whatsappLink }: LeadMo
           </form>
 
           <p className="text-[10px] text-center text-brand-dark/40 font-bold uppercase tracking-wider mt-6">
-            Ao continuar, você concorda com nossa política de privacidade.
+            Ao continuar, você concorda com nossa{' '}
+            <Link href="/privacidade" className="underline hover:text-brand-blue">
+              política de privacidade
+            </Link>
+            .
           </p>
         </Dialog.Content>
       </Dialog.Portal>
