@@ -23,4 +23,10 @@ describe('Footer', () => {
     render(<Footer />);
     expect(screen.getByText(/© 2026 Unum People - Creative Solutions. Todos os direitos reservados./i)).toBeInTheDocument();
   });
+
+  it('deve apontar para contato e privacidade', () => {
+    render(<Footer />);
+    expect(screen.getAllByRole('link', { name: 'Contato' }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('link', { name: 'Privacidade' }).length).toBeGreaterThan(0);
+  });
 });
