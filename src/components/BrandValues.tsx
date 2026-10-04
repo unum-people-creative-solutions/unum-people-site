@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Layers, Link as LinkIcon, Heart, Route, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
