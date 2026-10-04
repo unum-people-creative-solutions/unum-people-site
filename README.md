@@ -10,11 +10,24 @@ Para obter o contexto arquitetural completo e consultar o *Single Source of Trut
 
 A Unum People foca em conectar e aproximar pessoas. Acreditamos que as verdadeiras oportunidades surgem através de conexões genuínas.
 
-## 🚀 O Ecossistema Unum People
-Nosso ecossistema é desenhado para reduzir a distância entre empresas e seus clientes ideais:
-- **Sites de Alta Performance**: Design minimalista e vanguardista focado em conversão.
-- **Unum People CRM**: Gestão ágil de leads com notificações push e integração com IA.
-- **Gestão de Tráfego**: Atribuição inteligente para otimizar o ROI de anúncios (Google Ads).
+## 🚀 O que este site é
+Casa institucional da marca (`unumpeople.com.br`) e porta de entrada para o configurador de páginas (LP Builder, em `unumpeople.app`). O site **não escreve preço**: planos e valores vivem só na vitrine do LP Builder.
+
+### Rotas
+| Rota | Conteúdo |
+|---|---|
+| `/` | Home curta: hero, três jeitos de começar, portfólio, o que acreditamos e fechamento |
+| `/sobre` | Manifesto e valores da marca |
+| `/contato`, `/privacidade` | Páginas institucionais e legais |
+| `/termos/[termId]/[version]` | Termo de contratação (montado pelo checkout do LP Builder) |
+| `/servicos` | Redirecionamento permanente (308) para `{LP}/#planos`; não é mais página |
+
+### Variáveis de ambiente
+| Variável | Padrão | Uso |
+|---|---|---|
+| `NEXT_PUBLIC_LP_BUILDER_URL` | `https://unumpeople.app` | Endereço do LP Builder (sem barra final). Lida só em `src/lib/links.ts`; é embutida no build, então muda com novo build. |
+
+A identificação da empresa exibida no rodapé fica em `src/lib/empresa.ts` (cópia da constante do LP Builder).
 
 ## 🛠️ Stack Técnica
 - **Framework**: [Next.js](https://nextjs.org/)
