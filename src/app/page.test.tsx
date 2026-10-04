@@ -13,6 +13,13 @@ describe('Home', () => {
     expect(h1s[0]).toHaveTextContent(TITULO_HERO);
   });
 
+  it('mostra as três frases de "O que a gente acredita", como na spec', () => {
+    render(<Home />);
+    expect(screen.getByText('A tecnologia deve sumir para o negócio aparecer.')).toBeInTheDocument();
+    expect(screen.getByText('Ferramentas simples, com preço na tela e sem conversa antes.')).toBeInTheDocument();
+    expect(screen.getByText('O caminho mais curto entre você e o seu cliente.', { selector: 'p, li' })).toBeInTheDocument();
+  });
+
   it('traz as cinco seções, na ordem e com os textos da spec', () => {
     render(<Home />);
     const h2s = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent);

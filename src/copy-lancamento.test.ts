@@ -78,6 +78,24 @@ describe('texto proibido no lançamento', () => {
   });
 });
 
+describe('links para o LP Builder', () => {
+  // RF-01: o endereço do LP Builder vive num módulo só. Um link escrito à mão
+  // (no Header, no redirecionamento, em qualquer componente) divergiria da env
+  // NEXT_PUBLIC_LP_BUILDER_URL sem ninguém notar.
+  it('nenhum arquivo de produção, fora de lib/links.ts, escreve o endereço do LP Builder', () => {
+    const culpados = arquivos
+      .filter((a) => !ehTeste(a.relativo) && a.relativo !== 'lib/links.ts')
+      .filter((a) => a.texto.includes('unumpeople.app'))
+      .map((a) => a.relativo);
+    expect(culpados).toEqual([]);
+  });
+
+  it('next.config.ts não escreve o endereço do LP Builder (usa lib/links)', () => {
+    const texto = readFileSync(join(process.cwd(), 'next.config.ts'), 'utf8');
+    expect(texto).not.toContain('unumpeople.app');
+  });
+});
+
 describe('páginas legais intactas', () => {
   it('termos, privacidade e contato continuam existindo', () => {
     expect(existsSync(join(RAIZ_SRC, 'app/termos/[termId]/[version]/page.tsx'))).toBe(true);
