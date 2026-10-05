@@ -1,28 +1,18 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { EMPRESA } from '@/lib/empresa';
+import { lpConfigurar, lpEntrar, lpPlanos } from '@/lib/links';
+
+const linkClasse =
+  'inline-flex min-h-11 items-center text-sm font-bold text-brand-dark/60 hover:text-brand-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue transition-colors';
+const tituloClasse = 'text-xs font-black uppercase tracking-widest text-brand-dark mb-4';
 
 const Footer = () => {
-  const pathname = usePathname();
-  const isServicosPage = pathname === '/servicos';
-
-  const handleScrollToPrecos = (e: React.MouseEvent) => {
-    if (isServicosPage) {
-      e.preventDefault();
-      const element = document.getElementById('precos');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
   return (
     <footer className="w-full py-16 px-6 md:px-12 bg-brand-soft border-t border-brand-dark/5">
       <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
-        {/* Logo & Description */}
+        {/* Logo, slogan e identificação da empresa */}
         <div className="md:col-span-2">
           <Link href="/" className="relative h-12 w-48 mb-6 block transition-opacity hover:opacity-80">
             <Image 
@@ -32,100 +22,63 @@ const Footer = () => {
               className="object-contain object-left"
             />
           </Link>
-          <p className="text-brand-dark/60 max-w-sm leading-relaxed font-medium">
+          <p className="text-brand-dark/60 max-w-sm leading-relaxed font-medium mb-6">
             O caminho mais curto entre você e o seu cliente.
           </p>
+          <address className="not-italic text-sm text-brand-dark/60 font-medium leading-relaxed space-y-1">
+            <p>{EMPRESA.razaoSocial}</p>
+            <p>CNPJ {EMPRESA.cnpj}</p>
+            <p>{EMPRESA.endereco}</p>
+            <p>
+              <a
+                href={`mailto:${EMPRESA.email}`}
+                className="underline underline-offset-2 hover:text-brand-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
+              >
+                {EMPRESA.email}
+              </a>
+            </p>
+          </address>
         </div>
 
         {/* Links: Navegação */}
-        <div>
-          <h4 className="text-xs font-black uppercase tracking-widest text-brand-dark mb-6">Navegação</h4>
-          <ul className="space-y-4">
-            <li>
-              <Link href="/" className="text-sm font-bold text-brand-dark/60 hover:text-brand-blue transition-colors">Início</Link>
-            </li>
-            <li>
-              {isServicosPage ? (
-                <a 
-                  href="#precos" 
-                  onClick={handleScrollToPrecos}
-                  className="text-sm font-bold text-brand-dark/60 hover:text-brand-blue transition-colors"
-                >
-                  Serviços
-                </a>
-              ) : (
-                <Link href="/servicos" className="text-sm font-bold text-brand-dark/60 hover:text-brand-blue transition-colors">
-                  Serviços
-                </Link>
-              )}
-            </li>
-            <li>
-              {isServicosPage ? (
-                <a 
-                  href="#precos" 
-                  onClick={handleScrollToPrecos}
-                  className="text-sm font-bold text-brand-dark/60 hover:text-brand-blue transition-colors"
-                >
-                  Pacotes & Preços
-                </a>
-              ) : (
-                <Link href="/servicos" className="text-sm font-bold text-brand-dark/60 hover:text-brand-blue transition-colors">
-                  Pacotes & Preços
-                </Link>
-              )}
-            </li>
-            <li>
-              <Link href="/contato" className="text-sm font-bold text-brand-dark/60 hover:text-brand-blue transition-colors">
-                Contato
-              </Link>
-            </li>
-            <li>
-              <Link href="/privacidade" className="text-sm font-bold text-brand-dark/60 hover:text-brand-blue transition-colors">
-                Privacidade
-              </Link>
-            </li>
+        <nav aria-label="Navegação">
+          <h2 className={tituloClasse}>Navegação</h2>
+          <ul className="space-y-1">
+            <li><Link href="/" className={linkClasse}>Início</Link></li>
+            <li><Link href="/sobre" className={linkClasse}>Sobre</Link></li>
+            <li><a href={lpPlanos()} className={linkClasse}>Planos</a></li>
+            <li><Link href="/contato" className={linkClasse}>Contato</Link></li>
+            <li><Link href="/privacidade" className={linkClasse}>Privacidade</Link></li>
           </ul>
-        </div>
+        </nav>
 
-        {/* Links: Ecossistema */}
-        <div>
-          <h4 className="text-xs font-black uppercase tracking-widest text-brand-dark mb-6">Ecossistema</h4>
-          <ul className="space-y-4">
+        {/* Links: Produto */}
+        <nav aria-label="Produto">
+          <h2 className={tituloClasse}>Produto</h2>
+          <ul className="space-y-1">
+            <li><a href={lpConfigurar('institucional')} className={linkClasse}>Montar minha página</a></li>
             <li>
-              <a href="https://crm.unumpeople.com.br" target="_blank" className="text-sm font-bold text-brand-dark/60 hover:text-brand-blue transition-colors">Unum People CRM</a>
+              <a href="https://docs.unumpeople.com.br/paginas/" target="_blank" rel="noopener noreferrer" className={linkClasse}>
+                Central de ajuda
+              </a>
+            </li>
+            <li><a href={lpEntrar()} className={linkClasse}>Entrar</a></li>
+            <li>
+              <a href="https://crm.unumpeople.com.br" target="_blank" rel="noopener noreferrer" className={linkClasse}>
+                CRM
+              </a>
             </li>
             <li>
-              <a href="https://tools.unumpeople.com.br" target="_blank" className="text-sm font-bold text-brand-dark/60 hover:text-brand-blue transition-colors">Ferramentas</a>
-            </li>
-            <li>
-              {isServicosPage ? (
-                <a 
-                  href="#precos" 
-                  onClick={handleScrollToPrecos}
-                  className="text-sm font-bold text-brand-dark/60 hover:text-brand-blue transition-colors"
-                >
-                  Gestão de Tráfego
-                </a>
-              ) : (
-                <Link href="/servicos" className="text-sm font-bold text-brand-dark/60 hover:text-brand-blue transition-colors">
-                  Gestão de Tráfego
-                </Link>
-              )}
+              <a href="https://tools.unumpeople.com.br" target="_blank" rel="noopener noreferrer" className={linkClasse}>
+                Ferramentas
+              </a>
             </li>
           </ul>
-        </div>
+        </nav>
       </div>
       
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-brand-dark/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-brand-dark/40 font-bold uppercase tracking-widest">
-        <div>
-          &copy; 2026 Unum People - Creative Solutions. Todos os direitos reservados.
-        </div>
-        <div className="flex gap-8">
-          <Link href="/privacidade" className="hover:text-brand-blue transition-colors">Privacidade</Link>
-          <Link href="/contato" className="hover:text-brand-blue transition-colors">Contato</Link>
-          <span>Brasil</span>
-          <span>Sempre Conectados</span>
-        </div>
+      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-brand-dark/5 text-[10px] text-brand-dark/40 font-bold uppercase tracking-widest">
+        &copy; 2026 Unum People - Creative Solutions. Todos os direitos reservados.
       </div>
     </footer>
   );
