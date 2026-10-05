@@ -10,7 +10,8 @@ test.describe('Contato e privacidade', () => {
 
     await page.getByRole('contentinfo').getByRole('link', { name: 'Contato' }).click();
     await expect(page).toHaveURL('/contato');
-    const mail = page.getByRole('link', { name: 'atendimento@unumpeople.com.br' });
+    // O rodapé também mostra o e-mail; o teste olha o conteúdo da página.
+    const mail = page.getByRole('main').getByRole('link', { name: 'atendimento@unumpeople.com.br' });
     await expect(mail).toBeVisible();
     await expect(mail).toHaveAttribute('href', 'mailto:atendimento@unumpeople.com.br');
   });

@@ -40,6 +40,7 @@ describe('Footer', () => {
     expect(within(navegacao).getByRole('link', { name: 'Planos' })).toHaveAttribute('href', lpPlanos());
     expect(within(navegacao).getByRole('link', { name: 'Contato' })).toHaveAttribute('href', '/contato');
     expect(within(navegacao).getByRole('link', { name: 'Privacidade' })).toHaveAttribute('href', '/privacidade');
+    expect(within(navegacao).getByRole('link', { name: 'Termos de contratação' })).toHaveAttribute('href', '/termos');
   });
 
   it('deve trazer a coluna Produto com central de ajuda, conta, CRM e ferramentas', () => {
