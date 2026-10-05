@@ -49,6 +49,7 @@ const Footer = () => {
             <li><a href={lpPlanos()} className={linkClasse}>Planos</a></li>
             <li><Link href="/contato" className={linkClasse}>Contato</Link></li>
             <li><Link href="/privacidade" className={linkClasse}>Privacidade</Link></li>
+            <li><Link href="/termos" className={linkClasse}>Termos de contratação</Link></li>
           </ul>
         </nav>
 
