@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Section } from '@/components/Section';
+import { LP_BUILDER_URL } from '@/lib/links';
 
 export const metadata: Metadata = {
   title: 'Política de privacidade | Unum People',
@@ -17,7 +18,7 @@ export default function Privacidade() {
           Política de privacidade
         </h1>
         <p className="text-sm font-bold uppercase tracking-widest text-brand-dark/40 mb-10">
-          Atualizada em 2 de outubro de 2026
+          Atualizada em 5 de outubro de 2026
         </p>
 
         <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">Quem é o responsável</h2>
@@ -33,16 +34,18 @@ export default function Privacidade() {
 
         <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">O que o site coleta</h2>
         <p className="mb-3">
-          O formulário de interesse em um pacote pede nome, e-mail e telefone.
-          Junto com o pacote escolhido, esses dados entram no CRM da Unum para
-          que a equipe responda o pedido. O envio também abre uma conversa no
-          WhatsApp.
+          O site não tem formulário. Quem quer contratar segue para o{' '}
+          <a className="text-brand-blue font-bold" href={LP_BUILDER_URL}>
+            configurador de páginas
+          </a>
+          , onde informa nome, e-mail, telefone e os dados de cobrança para
+          fechar o plano.
         </p>
         <p>
           Se a visita chegou por anúncio, o navegador guarda na sessão os
           identificadores dessa origem (gclid, fbclid, msclkid e parâmetros
-          utm). Eles seguem com o lead e não são usados para montar lista de
-          e-mail.
+          utm). Eles ficam só no navegador e não são usados para montar lista
+          de e-mail.
         </p>
 
         <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">E-mails que enviamos</h2>
@@ -66,15 +69,22 @@ export default function Privacidade() {
           <li>avisos de cobrança para o mesmo contato: fatura em aberto e risco de exclusão da conta.</li>
         </ul>
         <p className="mt-3">
-          Endereço que devolve falha permanente sai da fila e não é tentado de
-          novo. Encerrar a conta interrompe esses envios.
+          Endereço que devolve falha permanente, ou cujo dono marca a mensagem
+          como spam, entra numa lista de bloqueio e não recebe novas tentativas.
+          A equipe recebe um aviso de cada caso para corrigir o cadastro com o
+          cliente por outro canal. Encerrar a conta interrompe esses envios. As
+          regras da contratação estão nos{' '}
+          <Link href="/termos" className="text-brand-blue font-bold">
+            termos de contratação
+          </Link>
+          .
         </p>
 
         <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">Com quem os dados passam</h2>
         <p>
-          O lead fica no CRM da Unum. A entrega dos e-mails transacionais usa a
-          Amazon SES. O WhatsApp só entra quando a pessoa segue para a conversa
-          a partir do formulário.
+          A entrega dos e-mails transacionais usa a Amazon SES. A cobrança das
+          assinaturas usa o Asaas, que recebe os dados necessários para emitir
+          a cobrança.
         </p>
 
         <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">Seus pedidos</h2>
