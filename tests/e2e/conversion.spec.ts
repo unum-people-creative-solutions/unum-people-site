@@ -1,52 +1,38 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Fluxo de Conversão', () => {
-  test('deve navegar até a página de serviços e completar o fluxo de lead até o WhatsApp', async ({ page }) => {
-    // 1. Ir para a Home
+// O site principal não vende nem mostra preço: os botões levam ao LP Builder
+// (unumpeople.app), onde o cliente monta a página e contrata. O teste confere
+// o destino de cada botão sem sair do site (o LP Builder tem os próprios testes).
+test.describe('Fluxo de conversão', () => {
+  test('o botão principal da home leva ao configurador do LP Builder', async ({ page }) => {
     await page.goto('/');
-    
-    // 2. Navegar para Serviços
-    // No mobile o header pode estar oculto, então verificamos a visibilidade
-    const servicosLink = page.getByRole('navigation').getByRole('link', { name: 'Serviços', exact: true });
-    if (await servicosLink.isVisible()) {
-      await servicosLink.click();
-    } else {
-      await page.goto('/servicos');
+
+    const hero = page.getByRole('region', { name: /O caminho mais curto/ });
+    const montar = hero.getByRole('link', { name: 'Montar minha página' });
+    await expect(montar).toBeVisible();
+    await expect(montar).toHaveAttribute('href', /\/configurar\?ref=institucional$/);
+
+    // O mesmo botão aparece mais abaixo e no rodapé: todos levam ao configurador.
+    for (const link of await page.getByRole('link', { name: 'Montar minha página' }).all()) {
+      await expect(link).toHaveAttribute('href', /\/configurar\?ref=institucional$/);
     }
-    await expect(page).toHaveURL('/servicos');
+  });
 
-    // 3. Escolher o Pacote Avançado na Pricing Table
-    // Usamos um seletor mais específico para o card (div filha direta do grid)
-    const cardAvancado = page.locator('.grid > div').filter({ 
-      has: page.getByRole('heading', { name: 'Avançado', exact: true }) 
-    });
-    const ctaAvancado = cardAvancado.getByRole('button', { name: /Selecionar Pacote/i });
-    await ctaAvancado.click();
+  test('os botões de planos levam à vitrine do LP Builder, sem preço no site', async ({ page }) => {
+    await page.goto('/');
 
-    // 4. Verificar se o Modal de Lead abriu
-    const modal = page.getByRole('dialog');
-    await expect(modal).toBeVisible();
-    await expect(modal).toContainText(/Avançado/i);
+    const verPlanos = page.getByRole('link', { name: 'Ver planos e preços' });
+    await expect(verPlanos.first()).toBeVisible();
+    for (const link of await verPlanos.all()) {
+      await expect(link).toHaveAttribute('href', /\/#planos$/);
+    }
+    await expect(page.getByText(/R\$\s?\d/)).toHaveCount(0);
+  });
 
-    // 5. Preencher o formulário
-    await modal.getByLabel(/Seu Nome/i).fill('Usuário de Teste E2E');
-    await modal.getByLabel(/Seu E-mail/i).fill('teste@e2e.com');
-    await modal.getByLabel(/Seu WhatsApp/i).fill('11988887777');
+  test('/servicos redireciona para os planos do LP Builder', async ({ request }) => {
+    const resposta = await request.get('/servicos', { maxRedirects: 0 });
 
-    // 6. Submeter e verificar se tenta abrir o WhatsApp
-    // Como o WhatsApp abre em uma nova aba (_blank), podemos monitorar o evento de 'popup'
-    const [popup] = await Promise.all([
-      page.waitForEvent('popup'),
-      modal.getByRole('button', { name: /Continuar para WhatsApp/i }).click(),
-    ]);
-
-    // Verificamos se a URL contém o domínio do WhatsApp e os dados corretos
-    const url = popup.url();
-    expect(url).toMatch(/whatsapp\.com|wa\.me/);
-    expect(url).toContain('5511988887777');
-    expect(decodeURIComponent(url)).toContain('Avançado');
-    
-    // 7. O modal deve ter fechado na página original
-    await expect(modal).not.toBeVisible();
+    expect(resposta.status()).toBe(308);
+    expect(resposta.headers()['location']).toMatch(/\/#planos$/);
   });
 });
