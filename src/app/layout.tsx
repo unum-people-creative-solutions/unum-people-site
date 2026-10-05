@@ -11,18 +11,21 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
+const TITULO = "Unum People — página com WhatsApp para o seu negócio";
+const DESCRICAO = "Monte sua página, veja como fica e só pague para publicar. O caminho mais curto entre você e o seu cliente.";
+
 export const metadata: Metadata = {
-  title: "Unum People | Conectando Pessoas através da Tecnologia",
-  description: "O caminho mais curto entre você e o seu cliente. Especialistas em Sites de Alta Performance, CRM e Gestão de Tráfego.",
-  keywords: ["Unum People", "Creative Solutions", "Sites de Alta Performance", "Unum People CRM", "Google Ads", "Gestão de Tráfego", "Landing Pages"],
+  title: TITULO,
+  description: DESCRICAO,
+  keywords: ["Unum People", "Creative Solutions", "página com WhatsApp", "Unum People CRM", "Landing Pages"],
   authors: [{ name: "Unum People Team" }],
   metadataBase: new URL("https://unumpeople.com.br"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Unum People | Conectando Pessoas através da Tecnologia",
-    description: "O caminho mais curto entre você e o seu cliente.",
+    title: TITULO,
+    description: DESCRICAO,
     url: "https://unumpeople.com.br",
     siteName: "Unum People",
     locale: "pt_BR",
@@ -38,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Unum People | Conectando Pessoas através da Tecnologia",
-    description: "O caminho mais curto entre você e o seu cliente.",
+    title: TITULO,
+    description: DESCRICAO,
     images: ["/images/logo.png"],
   },
   icons: {
@@ -64,9 +67,8 @@ export default function RootLayout({
       "addressCountry": "BR"
     },
     "serviceType": [
-      "Desenvolvimento de Sites",
-      "Gestão de Unum People CRM",
-      "Gestão de Tráfego Pago"
+      "Páginas para negócios",
+      "CRM para pequenos negócios"
     ]
   };
 

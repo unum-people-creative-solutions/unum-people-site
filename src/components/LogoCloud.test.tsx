@@ -14,9 +14,16 @@ vi.mock('framer-motion', () => ({
 }));
 
 describe('LogoCloud', () => {
-  it('deve renderizar o título da seção corretamente', () => {
+  it('deve renderizar o título e a introdução da seção', () => {
     render(<LogoCloud />);
-    expect(screen.getByText(/Portfólio de Confiança/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Páginas que desenhamos' })).toBeInTheDocument();
+    expect(screen.getByText('Trabalhos feitos sob medida pela Unum.')).toBeInTheDocument();
+  });
+
+  it('deve descrever cada trabalho em palavras simples', () => {
+    render(<LogoCloud />);
+    expect(screen.getAllByText('Site institucional')).toHaveLength(4);
+    expect(screen.getAllByText('Página de apresentação')).toHaveLength(1);
   });
 
   it('deve renderizar todos os nomes dos clientes reais', () => {
