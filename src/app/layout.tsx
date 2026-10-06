@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import { TrackingInitializer } from "@/components/TrackingInitializer";
 
 const poppins = Poppins({
-  weight: ["300", "400", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-poppins",
   subsets: ["latin"],
 });

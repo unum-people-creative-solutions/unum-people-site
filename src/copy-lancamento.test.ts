@@ -26,7 +26,13 @@ const arquivos = listar(RAIZ_SRC).map((caminho) => ({
 const ehTeste = (relativo: string) => /\.test\.(ts|tsx)$/.test(relativo);
 
 // Onde a marca ainda pode falar da "ponte invisível" e da "Jornada".
-const EXCECOES_DA_MARCA = ['app/sobre/', 'components/BrandValues.tsx', 'components/home/ManifestoSection.tsx'];
+const EXCECOES_DA_MARCA = [
+  'app/sobre/',
+  'components/BrandValues.tsx',
+  'components/home/ManifestoSection.tsx',
+  // Manifesto da home "A ponte": a frase do manual fecha a história da página.
+  'components/home/PonteInvisivel.tsx',
+];
 const ehExcecaoDaMarca = (relativo: string) => EXCECOES_DA_MARCA.some((e) => relativo.startsWith(e) || relativo === e);
 
 const PROIBIDOS = [
