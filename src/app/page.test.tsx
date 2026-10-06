@@ -64,6 +64,11 @@ describe('Home "A ponte" — estrutura (RF-05)', () => {
   it('T04: os h2 vêm na ordem da história', () => {
     render(<Home />);
     const h2s = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent?.replace(/\s+/g, ' ').trim());
+    // O hero (h1) vem antes de todas as seções.
+    const h1 = screen.getByRole('heading', { level: 1 });
+    screen.getAllByRole('heading', { level: 2 }).forEach((h2) => {
+      expect(h1.compareDocumentPosition(h2) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    });
     expect(h2s).toEqual([
       'Entre você e o cliente sempre existe uma distância.',
       'Do modelo ao primeiro contato.',
@@ -112,8 +117,12 @@ describe('Home "A ponte" — O vão (RF-02)', () => {
 
     VAOS.forEach((esperado, i) => {
       const item = itens[i];
-      expect(item).toHaveTextContent(esperado.rotulo);
-      expect(item).toHaveTextContent(esperado.dor);
+      const rotulo = within(item).getByText(esperado.rotulo);
+      const paragrafoDaDor = rotulo.closest('p');
+      expect(paragrafoDaDor?.textContent).toBe(`${esperado.rotulo}${esperado.dor}`);
+      const arco = item.querySelector('svg');
+      expect(arco).not.toBeNull();
+      expect(arco).toHaveAttribute('aria-hidden', 'true');
       expect(within(item).getByRole('heading', { level: 3, name: esperado.plano })).toBeInTheDocument();
       expect(within(item).getByText(esperado.texto)).toBeInTheDocument();
       expect(within(item).getByRole('link', { name: `Ver o plano ${esperado.plano}` })).toHaveAttribute('href', lpPlanos());
@@ -138,6 +147,8 @@ describe('Home "A ponte" — Como funciona (RF-03)', () => {
       ['Publique e receba', 'Pague só quando decidir publicar. O botão de WhatsApp já sai funcionando.'],
     ];
     passos.forEach(([titulo, texto], i) => {
+      const numero = within(itens[i]).getByText(String(i + 1));
+      expect(numero).toHaveAttribute('aria-hidden', 'true');
       expect(within(itens[i]).getByRole('heading', { level: 3, name: titulo })).toBeInTheDocument();
       expect(within(itens[i]).getByText(texto)).toBeInTheDocument();
     });

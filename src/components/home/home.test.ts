@@ -9,7 +9,8 @@ const RAIZ = process.cwd();
 const HOME = join(RAIZ, 'src/components/home');
 const ler = (caminho: string) => readFileSync(caminho, 'utf8');
 
-const COMPONENTES = ['Hero.tsx', 'OVao.tsx', 'ComoFunciona.tsx', 'PonteInvisivel.tsx'];
+const COMPONENTES = ['Hero.tsx', 'OVao.tsx', 'ComoFunciona.tsx', 'PonteInvisivel.tsx'].map((nome) => join(HOME, nome));
+const ARQUIVOS_DA_HOME = [...COMPONENTES, join(RAIZ, 'src/app/page.tsx')];
 
 /** Conteúdo entre as chaves do primeiro bloco que começa em `inicio`. */
 function bloco(css: string, inicio: string): string {
@@ -36,12 +37,12 @@ function regras(css: string, classe: string): string {
 }
 
 describe('Home "A ponte" — fronteira servidor (RNF-03, T10)', () => {
-  it.each(COMPONENTES)('%s existe, não declara use client e não importa framer-motion', (arquivo) => {
-    const caminho = join(HOME, arquivo);
+  it.each(ARQUIVOS_DA_HOME)('%s existe, não declara use client e não importa framer-motion', (caminho) => {
     expect(existsSync(caminho)).toBe(true);
     const texto = ler(caminho);
-    expect(texto).not.toMatch(/^\s*(['"])use client\1/);
-    expect(texto).not.toMatch(/from ['"]framer-motion['"]/);
+    // Flag m: a diretiva vale também depois de um comentário no topo.
+    expect(texto).not.toMatch(/^\s*(['"])use client\1/m);
+    expect(texto).not.toMatch(/['"]framer-motion(\/[^'"]*)?['"]/);
   });
 });
 
@@ -53,9 +54,10 @@ describe('Home "A ponte" — máscara e movimento (RNF-01, T10)', () => {
     expect(existsSync(join(RAIZ, 'public/images/ponte-alpha.webp'))).toBe(true);
   });
 
-  it('varredura, aviso e "invisível" animam no mesmo ciclo de 9 s', () => {
-    for (const classe of ['varredura', 'contato', 'invisivel']) {
-      expect(regras(css, classe), `.${classe} sem animação de 9s`).toMatch(/animation:\s*[\w-]+\s+9s/);
+  it('varredura, aviso e "invisível" animam no mesmo ciclo de 9 s, com keyframes que existem', () => {
+    for (const [classe, nome] of [['varredura', 'atravessa'], ['contato', 'chega'], ['invisivel', 'revela']]) {
+      expect(regras(css, classe), `.${classe} sem animação de 9s`).toMatch(new RegExp(`animation:\\s*${nome}\\s+9s`));
+      expect(bloco(css, `@keyframes ${nome}`), `@keyframes ${nome} ausente`).not.toBe('');
     }
   });
 
@@ -66,6 +68,19 @@ describe('Home "A ponte" — máscara e movimento (RNF-01, T10)', () => {
     expect(regras(reduzido, 'contato')).toMatch(/animation:\s*none/);
     expect(regras(reduzido, 'contato')).toMatch(/opacity:\s*1/);
     expect(regras(reduzido, 'invisivel')).toMatch(/animation:\s*none/);
+    // "invisível" deixa de ser só contorno: preenchida inteira, sem traço.
+    expect(regras(reduzido, 'invisivel')).toMatch(/background-size:\s*100% 100%/);
+    expect(regras(reduzido, 'invisivel')).toMatch(/background-position:\s*0 0/);
+    expect(regras(reduzido, 'invisivel')).toMatch(/-webkit-text-stroke:\s*0/);
+    // A ponte fica acesa, parada: a camada base sobe de opacidade.
+    expect(regras(reduzido, 'base')).toMatch(/opacity:\s*\.55/);
+  });
+
+  it('o anel de foco tem contraste de 3:1 nas seções claras (WCAG 1.4.11)', () => {
+    expect(regras(css, 'home a:focus-visible')).toMatch(/outline:\s*3px solid var\(--azul\)/);
+    // Nas seções escuras o anel continua claro.
+    expect(regras(css, 'hero a:focus-visible')).toMatch(/#7D96FF/i);
+    expect(regras(css, 'noite a:focus-visible')).toMatch(/#7D96FF/i);
   });
 });
 
