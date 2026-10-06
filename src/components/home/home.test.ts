@@ -57,7 +57,7 @@ describe('Home "A ponte" — máscara e movimento (RNF-01, T10)', () => {
   it('varredura, aviso e "invisível" animam no mesmo ciclo de 9 s, com keyframes que existem', () => {
     for (const [classe, nome] of [['varredura', 'atravessa'], ['contato', 'chega'], ['invisivel', 'revela']]) {
       expect(regras(css, classe), `.${classe} sem animação de 9s`).toMatch(new RegExp(`animation:\\s*${nome}\\s+9s`));
-      expect(bloco(css, `@keyframes ${nome}`), `@keyframes ${nome} ausente`).not.toBe('');
+      expect(css, `@keyframes ${nome} ausente`).toMatch(new RegExp(`@keyframes\\s+${nome}\\s*\\{`));
     }
   });
 
@@ -78,9 +78,10 @@ describe('Home "A ponte" — máscara e movimento (RNF-01, T10)', () => {
 
   it('o anel de foco tem contraste de 3:1 nas seções claras (WCAG 1.4.11)', () => {
     expect(regras(css, 'home a:focus-visible')).toMatch(/outline:\s*3px solid var\(--azul\)/);
-    // Nas seções escuras o anel continua claro.
-    expect(regras(css, 'hero a:focus-visible')).toMatch(/#7D96FF/i);
-    expect(regras(css, 'noite a:focus-visible')).toMatch(/#7D96FF/i);
+    // Nas seções escuras o anel continua claro, com seletor mais específico que
+    // o da regra clara: não depende da ordem das regras no arquivo.
+    expect(regras(css, 'home .hero a:focus-visible')).toMatch(/#7D96FF/i);
+    expect(regras(css, 'home .noite a:focus-visible')).toMatch(/#7D96FF/i);
   });
 });
 
