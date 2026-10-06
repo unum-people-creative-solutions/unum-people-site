@@ -26,11 +26,15 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* Anel de foco: azul da marca nas seções claras (3:1 sobre branco e névoa),
+   claro nas seções escuras. */
 .home a:focus-visible {
-  outline: 3px solid #7D96FF;
+  outline: 3px solid var(--azul);
   outline-offset: 3px;
   border-radius: 6px;
 }
+.hero a:focus-visible,
+.noite a:focus-visible { outline-color: #7D96FF; }
 
 .faixa { padding-inline: 24px; }
 .miolo { max-width: var(--largura); margin-inline: auto; }
