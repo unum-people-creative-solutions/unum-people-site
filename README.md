@@ -16,7 +16,7 @@ Casa institucional da marca (`unumpeople.com.br`) e porta de entrada para o conf
 ### Rotas
 | Rota | Conteúdo |
 |---|---|
-| `/` | Home curta: hero, três jeitos de começar, portfólio, o que acreditamos e fechamento |
+| `/` | Home "A ponte": hero com a ponte que acende e o contato que chega, O vão (uma dor e um plano por linha), Como funciona, a ponte invisível e o fechamento. Componentes em `src/components/home/` (Server Components, estilos em `home.module.css`, animação só em CSS e desligada com movimento reduzido) |
 | `/sobre` | Manifesto e valores da marca |
 | `/contato`, `/privacidade` | Páginas institucionais e legais |
 | `/termos/[termId]/[version]` | Termo de contratação (montado pelo checkout do LP Builder) |
@@ -31,7 +31,7 @@ A identificação da empresa exibida no rodapé fica em `src/lib/empresa.ts` (c�
 
 ## 🛠️ Stack Técnica
 - **Framework**: [Next.js](https://nextjs.org/)
-- **Estilização**: [Tailwind CSS](https://tailwindcss.com/)
+- **Estilização**: [Tailwind CSS](https://tailwindcss.com/); a home usa CSS Module (`src/components/home/home.module.css`), com a máscara da ponte em `public/images/ponte-alpha.webp`
 - **Linguagem**: [TypeScript](https://www.typescriptlang.org/)
 
 ## 📖 Documentação

@@ -1,16 +1,16 @@
-import React from 'react';
+import { ComoFunciona } from '@/components/home/ComoFunciona';
 import { Hero } from '@/components/home/Hero';
-import { ComecarDeTresJeitos } from '@/components/home/ComecarDeTresJeitos';
-import { Acreditamos } from '@/components/home/Acreditamos';
-import { FinalCTABanner } from '@/components/home/FinalCTABanner';
+import { OVao } from '@/components/home/OVao';
+import { PonteInvisivel } from '@/components/home/PonteInvisivel';
+import styles from '@/components/home/home.module.css';
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full">
+    <div className={styles.home}>
       <Hero />
-      <ComecarDeTresJeitos />
-      <Acreditamos />
-      <FinalCTABanner />
+      <OVao />
+      <ComoFunciona />
+      <PonteInvisivel />
     </div>
   );
 }
