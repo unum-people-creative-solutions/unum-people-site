@@ -25,7 +25,6 @@ describe('Home', () => {
     const h2s = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent);
     expect(h2s).toEqual([
       'Escolha o que o seu negócio precisa',
-      'Quem faz',
       'O que a gente acredita',
       'Monte sua página agora.',
     ]);
@@ -33,13 +32,6 @@ describe('Home', () => {
     expect(screen.getByText('Página com WhatsApp para profissionais e pequenos negócios')).toBeInTheDocument();
     expect(screen.getByText('Monte em minutos, veja como fica e só pague para publicar.')).toBeInTheDocument();
     expect(screen.getByText('Você só paga quando decidir publicar.')).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        'A Unum People já desenhou páginas sob medida para psicólogas, advogados, personal trainer e comunicação visual. Os modelos do configurador nasceram desse trabalho.',
-      ),
-    ).toBeInTheDocument();
-    expect(screen.getByText('Páginas que desenhamos')).toBeInTheDocument();
-    expect(screen.getByText('Trabalhos feitos sob medida pela Unum.')).toBeInTheDocument();
   });
 
   it('leva os dois botões "Montar minha página" (hero e fechamento) ao configurador com ref=institucional', () => {
@@ -85,27 +77,20 @@ describe('Home', () => {
     expect(screen.queryByText(/Jornada/)).not.toBeInTheDocument();
   });
 
-  it('abre links externos em nova aba só com rel noopener noreferrer', () => {
-    render(<Home />);
-    const novaAba = screen
-      .getAllByRole('link')
-      .filter((link) => link.getAttribute('target') === '_blank');
-    expect(novaAba.length).toBeGreaterThan(0);
-    novaAba.forEach((link) => {
-      const rel = link.getAttribute('rel') ?? '';
-      expect(rel).toContain('noopener');
-      expect(rel).toContain('noreferrer');
-    });
-  });
-
-  it('mostra as cinco páginas do portfólio, com link e descrição em palavras simples', () => {
-    render(<Home />);
-    expect(screen.getByRole('link', { name: /Psicóloga Andrielly Oliveira/ })).toHaveAttribute('href', 'https://psiandriellyoliveira.com.br/');
-    expect(screen.getByRole('link', { name: /HS Personal Trainer/ })).toHaveAttribute('href', 'https://hernansampaio.com.br/');
-    expect(screen.getByRole('link', { name: /Garagem Comunicação Visual/ })).toHaveAttribute('href', 'https://garagemcomunicacaovisual.com.br/');
-    expect(screen.getByRole('link', { name: /Eliziario Advogados/ })).toHaveAttribute('href', 'https://eliziarioadv.com.br/');
-    expect(screen.getByRole('link', { name: /Centro de Psicologia Recriar/ })).toHaveAttribute('href', 'https://centrorecriar.com.br/');
-    expect(screen.getAllByText('Site institucional')).toHaveLength(4);
-    expect(screen.getAllByText('Página de apresentação')).toHaveLength(1);
+  // Páginas feitas sob medida pela Unum confundiam o comprador com o que o
+  // configurador entrega. A home não mostra projetos personalizados.
+  it('não mostra projetos feitos sob medida', () => {
+    const { container } = render(<Home />);
+    expect(screen.queryByRole('heading', { name: 'Quem faz' })).not.toBeInTheDocument();
+    expect(container).not.toHaveTextContent(/sob medida/i);
+    for (const dominio of [
+      'psiandriellyoliveira.com.br',
+      'hernansampaio.com.br',
+      'garagemcomunicacaovisual.com.br',
+      'eliziarioadv.com.br',
+      'centrorecriar.com.br',
+    ]) {
+      expect(container.querySelector(`a[href*="${dominio}"]`)).toBeNull();
+    }
   });
 });
