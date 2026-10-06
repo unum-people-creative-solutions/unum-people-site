@@ -1,75 +1,63 @@
-import React from 'react';
-import { ArrowRight, MessageCircle } from 'lucide-react';
 import { lpConfigurar, lpPlanos } from '@/lib/links';
-
-// Celular desenhado só com HTML/CSS: uma página genérica (barra de título, uma
-// linha de manchete e o botão verde de WhatsApp). Decorativo, por isso aria-hidden.
-const CelularIlustracao = () => (
-  <div
-    data-testid="hero-ilustracao"
-    aria-hidden="true"
-    className="mx-auto w-60 sm:w-64 rounded-[2.5rem] border-4 border-white/25 bg-white p-3 shadow-2xl"
-  >
-    <div className="overflow-hidden rounded-[2rem] bg-brand-soft">
-      <div className="flex items-center gap-1.5 bg-white px-4 py-3 border-b border-brand-dark/10">
-        <span className="h-2 w-2 rounded-full bg-brand-dark/20" />
-        <span className="h-2 w-2 rounded-full bg-brand-dark/20" />
-        <span className="h-2 w-2 rounded-full bg-brand-dark/20" />
-        <span className="ml-2 h-2.5 flex-1 rounded-full bg-brand-dark/10" />
-      </div>
-      <div className="space-y-3 px-5 py-8">
-        <div className="h-4 w-4/5 rounded bg-brand-dark" />
-        <div className="h-4 w-3/5 rounded bg-brand-dark" />
-        <div className="h-2.5 w-full rounded bg-brand-dark/15" />
-        <div className="h-2.5 w-5/6 rounded bg-brand-dark/15" />
-      </div>
-      <div className="px-5 pb-8">
-        <div className="flex items-center justify-center gap-2 rounded-full bg-green-500 py-3 text-sm font-bold text-white">
-          <MessageCircle className="h-4 w-4" />
-          WhatsApp
-        </div>
-      </div>
-    </div>
-  </div>
-);
+import styles from './home.module.css';
 
 export const Hero = () => {
   return (
-    <section
-      aria-labelledby="hero-titulo"
-      className="bg-brand-dark text-white px-6 md:px-12 py-16 md:py-28"
-    >
-      <div className="max-w-7xl mx-auto grid md:grid-cols-[1.2fr_1fr] gap-12 md:gap-16 items-center">
-        <div>
-          <span className="inline-block px-5 py-2 mb-8 text-xs font-black tracking-widest uppercase bg-white/10 rounded-full border border-white/15">
-            Página com WhatsApp para profissionais e pequenos negócios
+    <section className={`${styles.hero} ${styles.faixa}`} aria-labelledby="hero-titulo">
+      <div className={`${styles.miolo} ${styles.heroMiolo}`}>
+        <div className={styles.heroTexto}>
+          <span className={`${styles.heroRotulo} ${styles.rotulo}`}>
+            Páginas com WhatsApp para profissionais e pequenos negócios
           </span>
-          <h1
-            id="hero-titulo"
-            className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter leading-tight mb-6"
-          >
-            O caminho mais curto entre você e o seu cliente é uma página no ar hoje.
+          <h1 id="hero-titulo" className={styles.heroTitulo}>
+            <span className={styles.linha}>Seu cliente está</span>
+            {' '}
+            <span className={styles.linha}>do outro lado.</span>
+            {' '}
+            <span className={`${styles.linha} ${styles.acende}`}>Sua página é a ponte.</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed font-medium max-w-xl">
-            Monte em minutos, veja como fica e só pague para publicar.
+          <p className={styles.heroApoio}>
+            Monte em minutos, com o modelo do seu tipo de negócio e o botão de WhatsApp pronto. Você vê como fica antes de pagar.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href={lpConfigurar('institucional')}
-              className="inline-flex min-h-12 items-center justify-center gap-2 px-8 py-4 text-sm font-black uppercase tracking-widest bg-white text-brand-dark rounded-full hover:bg-brand-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-colors group"
-            >
+          <div className={styles.heroAcoes}>
+            <a className={`${styles.botao} ${styles.botaoClaro}`} href={lpConfigurar('institucional')}>
               Montar minha página
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+              <svg className={styles.seta} viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </a>
-            <a
-              href={lpPlanos()}
-              className="inline-flex min-h-12 items-center justify-center px-8 py-4 text-sm font-black uppercase tracking-widest border-2 border-white/40 text-white rounded-full hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-colors"
-            >
-              Ver planos e preços
+            <a className={`${styles.botao} ${styles.botaoLinha}`} href={lpPlanos()}>
+              Ver planos
             </a>
           </div>
         </div>
-        <CelularIlustracao />
+      </div>
+
+      {/* A ponte é só visual: o h1 já diz o que ela significa */}
+      <div className={styles.ponte} aria-hidden="true">
+        <div data-ponte className={`${styles.traco} ${styles.base}`} />
+        <div className={styles.varredura}>
+          <div className={styles.brilho}>
+            <div data-ponte className={styles.traco} />
+          </div>
+          <div data-ponte className={styles.traco} />
+        </div>
+      </div>
+
+      {/* Aviso decorativo que chega com a luz; não deve ser lido em voz alta */}
+      <div className={styles.contato} aria-hidden="true">
+        <div className={styles.contatoIcone}>
+          <svg viewBox="0 0 24 24" fill="#fff">
+            <path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Zm0 16.4a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.7.7.7-2.6-.2-.3A7.4 7.4 0 1 1 12 19.4Zm4-5.5c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6 6 0 0 1-3-2.6c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 2 .6 2.7.5.4-.1 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1l-.4-.3Z" />
+          </svg>
+        </div>
+        <div>
+          <div className={styles.contatoQuem}>
+            <span>Novo contato pela sua página</span>
+            <span>agora</span>
+          </div>
+          <div className={styles.contatoMsg}>Oi! Achei sua página no Google. Você atende no sábado?</div>
+        </div>
       </div>
     </section>
   );
