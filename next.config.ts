@@ -17,11 +17,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'api.microlink.io',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
         hostname: 'unumpeople.com.br',
         pathname: '/**',
       },
