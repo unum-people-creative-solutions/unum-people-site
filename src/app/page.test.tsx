@@ -52,7 +52,7 @@ describe('Home "A ponte" — hero (RF-01)', () => {
     expect(camadas.length).toBeGreaterThan(0);
     camadas.forEach((camada) => expect(camada.closest('[aria-hidden="true"]')).not.toBeNull());
 
-    const mensagem = within(regiao).getByText('Oi! Achei sua página no Google. Você atende no sábado?');
+    const mensagem = within(regiao).getByText('Oi! Vi sua página e gostaria de um orçamento.');
     const aviso = mensagem.closest('[aria-hidden="true"]') as HTMLElement | null;
     expect(aviso).not.toBeNull();
     expect(within(aviso!).getByText('Novo contato pela sua página')).toBeInTheDocument();

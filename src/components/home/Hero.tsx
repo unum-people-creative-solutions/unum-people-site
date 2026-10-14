@@ -56,7 +56,7 @@ export const Hero = () => {
             <span>Novo contato pela sua página</span>
             <span>agora</span>
           </div>
-          <div className={styles.contatoMsg}>Oi! Achei sua página no Google. Você atende no sábado?</div>
+          <div className={styles.contatoMsg}>Oi! Vi sua página e gostaria de um orçamento.</div>
         </div>
       </div>
     </section>
