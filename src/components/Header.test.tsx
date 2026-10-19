@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import Header from './Header';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import * as navigation from 'next/navigation';
-import { lpConfigurar, lpEntrar, lpPlanos } from '@/lib/links';
+import { lpConfigurar, lpPlanos } from '@/lib/links';
 
 describe('Header', () => {
   beforeEach(() => {
@@ -26,7 +26,7 @@ describe('Header', () => {
     expect(screen.getByRole('link', { name: 'Início' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: 'Sobre' })).toHaveAttribute('href', '/sobre');
     expect(screen.getByRole('link', { name: 'Planos' })).toHaveAttribute('href', lpPlanos());
-    expect(screen.getByRole('link', { name: 'Entrar' })).toHaveAttribute('href', lpEntrar());
+    expect(screen.getByRole('link', { name: 'Entrar' })).toHaveAttribute('href', 'https://customer.unumpeople.com.br');
     expect(screen.getByRole('link', { name: 'Montar minha página' })).toHaveAttribute(
       'href',
       lpConfigurar('institucional'),

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { lpConfigurar, lpEntrar, lpPlanos } from '@/lib/links';
+import { lpConfigurar, lpPlanos, portalEntrar } from '@/lib/links';
 
 const linkClasse =
   'inline-flex min-h-11 items-center text-sm font-bold text-brand-dark hover:text-brand-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue transition-colors';
@@ -69,7 +69,7 @@ const Header = () => {
         <a href={lpPlanos()} className={linkClasse}>
           Planos
         </a>
-        <a href={lpEntrar()} className={linkClasse}>
+        <a href={portalEntrar()} className={linkClasse}>
           Entrar
         </a>
         <a
