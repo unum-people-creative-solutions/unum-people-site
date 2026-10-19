@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react';
 import Footer from './Footer';
 import { describe, it, expect } from 'vitest';
-import { lpConfigurar, lpEntrar, lpPlanos } from '@/lib/links';
+import { lpConfigurar, lpPlanos } from '@/lib/links';
 
 describe('Footer', () => {
   it('deve renderizar a logo texto', () => {
@@ -54,7 +54,7 @@ describe('Footer', () => {
       'href',
       'https://docs.unumpeople.com.br/paginas/',
     );
-    expect(within(produto).getByRole('link', { name: 'Entrar' })).toHaveAttribute('href', lpEntrar());
+    expect(within(produto).getByRole('link', { name: 'Entrar' })).toHaveAttribute('href', 'https://customer.unumpeople.com.br');
     expect(within(produto).getByRole('link', { name: 'CRM' })).toHaveAttribute('href', 'https://crm.unumpeople.com.br');
     expect(within(produto).getByRole('link', { name: 'Ferramentas' })).toHaveAttribute(
       'href',

@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { EMPRESA } from '@/lib/empresa';
-import { lpConfigurar, lpEntrar, lpPlanos } from '@/lib/links';
+import { lpConfigurar, lpPlanos, portalEntrar } from '@/lib/links';
 
 const linkClasse =
   'inline-flex min-h-11 items-center text-sm font-bold text-brand-dark/60 hover:text-brand-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue transition-colors';
@@ -63,7 +63,7 @@ const Footer = () => {
                 Central de ajuda
               </a>
             </li>
-            <li><a href={lpEntrar()} className={linkClasse}>Entrar</a></li>
+            <li><a href={portalEntrar()} className={linkClasse}>Entrar</a></li>
             <li>
               <a href="https://crm.unumpeople.com.br" target="_blank" rel="noopener noreferrer" className={linkClasse}>
                 CRM

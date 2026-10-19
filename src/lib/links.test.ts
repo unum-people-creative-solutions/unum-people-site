@@ -34,11 +34,16 @@ describe('links do LP Builder', () => {
     expect(links.lpPlanos()).toBe('https://lp.example.test/#planos');
   });
 
-  it('monta os links do configurador, dos planos e da conta', async () => {
+  it('monta os links do configurador e dos planos', async () => {
     const links = await carregar();
     expect(links.lpConfigurar('institucional')).toBe('https://unumpeople.app/configurar?ref=institucional');
     expect(links.lpPlanos()).toBe('https://unumpeople.app/#planos');
-    expect(links.lpEntrar()).toBe('https://unumpeople.app/minha-conta');
+  });
+
+  // "Entrar" leva ao Portal do Cliente, a porta de entrada de todos os produtos.
+  it('Entrar leva ao Portal do Cliente', async () => {
+    const links = await carregar();
+    expect(links.portalEntrar()).toBe('https://customer.unumpeople.com.br');
   });
 
   it('codifica o ref para que & e # não escapem da query', async () => {
