@@ -61,4 +61,15 @@ describe('Páginas de privacidade e contato', () => {
     expect(mail).toHaveAttribute('href', 'mailto:atendimento@unumpeople.com.br');
     expect(screen.getByRole('link', { name: 'política de privacidade' })).toHaveAttribute('href', '/privacidade');
   });
+
+  // funil-configurador-f2 RF-18: o rastreamento e os dados da contratação vão ao CRM,
+  // e o Google recebe o gclid, o valor e o contato cifrado (sem "Google Ads": copy-lancamento).
+  it('diz que a contratação leva os identificadores ao CRM e o que o Google Ads recebe', () => {
+    const { container } = render(<Privacidade />);
+    const texto = container.textContent ?? '';
+
+    expect(texto).not.toMatch(/ficam só no navegador/);
+    expect(texto).toMatch(/Ao contratar, o gclid, o fbclid e os parâmetros utm_source, utm_medium e utm_campaign vão com os dados informados para o CRM da Unum/);
+    expect(texto).toMatch(/o Google recebe o identificador do clique \(gclid\), o valor da venda e o e-mail e o telefone cifrados \(hash\)/);
+  });
 });
