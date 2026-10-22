@@ -44,8 +44,10 @@ export default function Privacidade() {
         <p>
           Se a visita chegou por anúncio, o navegador guarda na sessão os
           identificadores dessa origem (gclid, fbclid, msclkid e parâmetros
-          utm). Eles ficam só no navegador e não são usados para montar lista
-          de e-mail.
+          utm) e os leva ao configurador. Ao contratar, o gclid, o fbclid e os
+          parâmetros utm_source, utm_medium e utm_campaign vão com os dados
+          informados para o CRM da Unum, onde a equipe acompanha a
+          contratação. Eles não são usados para montar lista de e-mail.
         </p>
         <p className="mt-3">
           As páginas da Unum em{' '}
@@ -109,7 +111,10 @@ export default function Privacidade() {
           A entrega dos e-mails transacionais usa a Amazon SES. A cobrança das
           assinaturas usa o Asaas, que recebe os dados necessários para emitir
           a cobrança. A medição dos anúncios usa o Google, que recebe pela tag
-          das páginas da Unum os dados de navegação e os cookies dele.
+          das páginas da Unum os dados de navegação e os cookies dele. Quando a
+          contratação é paga, o Google recebe o identificador do clique
+          (gclid), o valor da venda e o e-mail e o telefone cifrados (hash),
+          para medir o resultado dos anúncios.
         </p>
 
         <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">Seus pedidos</h2>
