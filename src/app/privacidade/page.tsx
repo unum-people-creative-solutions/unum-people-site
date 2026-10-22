@@ -18,7 +18,7 @@ export default function Privacidade() {
           Política de privacidade
         </h1>
         <p className="text-sm font-bold uppercase tracking-widest text-brand-dark/40 mb-10">
-          Atualizada em 5 de outubro de 2026
+          Atualizada em 22 de outubro de 2026
         </p>
 
         <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">Quem é o responsável</h2>
@@ -46,6 +46,30 @@ export default function Privacidade() {
           identificadores dessa origem (gclid, fbclid, msclkid e parâmetros
           utm). Eles ficam só no navegador e não são usados para montar lista
           de e-mail.
+        </p>
+        <p className="mt-3">
+          As páginas da Unum em{' '}
+          <a className="text-brand-blue font-bold" href={LP_BUILDER_URL}>
+            {new URL(LP_BUILDER_URL).host}
+          </a>{' '}
+          (apresentação, configurador, contratação e área do cliente) carregam a
+          tag de anúncios do Google, para medir o resultado dos anúncios da
+          Unum e mostrar anúncios a quem já visitou essas páginas. Ela usa
+          cookies do Google de dois tipos: os gravados no próprio domínio da
+          Unum (_gcl_au, _gcl_aw e _gcl_gb), que duram até 90 dias, e os
+          gravados nos domínios do Google, como o IDE em doubleclick.net, que
+          dura até 24 meses (13 meses na Europa e no Reino Unido). O endereço
+          enviado ao Google leva só os parâmetros de anúncio, sem códigos de
+          acesso nem links de pagamento. A base legal é o legítimo interesse da
+          Unum em medir os próprios anúncios. Para recusar, apague ou bloqueie
+          no navegador os cookies de {new URL(LP_BUILDER_URL).host} e de
+          doubleclick.net, ou use um bloqueador de rastreio; em{' '}
+          <a className="text-brand-blue font-bold" href="https://myadcenter.google.com/">
+            Minha Central de Anúncios do Google
+          </a>{' '}
+          você desliga os anúncios personalizados. Você também pode se opor
+          pelo endereço de atendimento abaixo. As páginas publicadas para
+          clientes não carregam essa tag.
         </p>
 
         <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">E-mails que enviamos</h2>
@@ -84,7 +108,8 @@ export default function Privacidade() {
         <p>
           A entrega dos e-mails transacionais usa a Amazon SES. A cobrança das
           assinaturas usa o Asaas, que recebe os dados necessários para emitir
-          a cobrança.
+          a cobrança. A medição dos anúncios usa o Google, que recebe pela tag
+          das páginas da Unum os dados de navegação e os cookies dele.
         </p>
 
         <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">Seus pedidos</h2>
