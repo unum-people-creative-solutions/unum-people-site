@@ -30,6 +30,29 @@ describe('Páginas de privacidade e contato', () => {
     expect(screen.getByRole('link', { name: 'termos de contratação' })).toHaveAttribute('href', '/termos');
   });
 
+  // lp-google-tag (spec US 6): o Configurador carrega a tag do Google Ads; a página
+  // publicada do cliente, não.
+  it('divulga a tag de anúncios do Google no configurador e o Google entre quem recebe dados', () => {
+    const { container } = render(<Privacidade />);
+    const texto = container.textContent ?? '';
+
+    expect(texto).toMatch(/tag de anúncios do Google/);
+    expect(texto).toMatch(/cookies do Google/);
+    expect(texto).toMatch(/páginas publicadas para clientes não carregam/);
+    expect(texto).toMatch(/Google, que recebe/);
+    // achado B1 do Verifier: o escopo real (domínio e as quatro superfícies)
+    expect(screen.getByRole('link', { name: 'unumpeople.app' })).toHaveAttribute('href', 'https://unumpeople.app');
+    expect(texto).toMatch(/apresentação, configurador, contratação e área do cliente/);
+    // achado I1: prazo, base legal e como recusar
+    expect(texto).toMatch(/_gcl_au, _gcl_aw e _gcl_gb\), que duram até 90 dias/);
+    // rodada 2: cookies de terceiro com o prazo oficial e recusa que funciona
+    expect(texto).toMatch(/IDE em doubleclick\.net, que\s+dura até 24 meses/);
+    expect(texto).toMatch(/apague ou bloqueie no navegador os cookies de unumpeople\.app e de doubleclick\.net/);
+    expect(texto).toMatch(/legítimo interesse/);
+    expect(screen.getByRole('link', { name: 'Minha Central de Anúncios do Google' })).toHaveAttribute('href', 'https://myadcenter.google.com/');
+    expect(screen.getByText(/Atualizada em 22 de outubro de 2026/)).toBeInTheDocument();
+  });
+
   it('expõe o atendimento na página de contato', () => {
     render(<Contato />);
 
