@@ -35,20 +35,22 @@ describe('Página de privacidade (/privacidade)', () => {
     const fetchMock = respostaDaApi(200, {
       term_name: 'Política de Privacidade',
       version_number: 3,
-      published_at: '2026-10-23T12:00:00Z',
+      // 02:00 UTC do dia 24 ainda é dia 23 em Brasília: prova o fuso.
+      published_at: '2026-10-24T02:00:00Z',
       content_html: '<h2>1. Introdução</h2><p>Texto da política.</p>',
     });
     vi.stubGlobal('fetch', fetchMock);
 
-    render(await Privacidade());
+    const { container } = render(await Privacidade());
 
     expect(screen.getByRole('heading', { level: 1, name: 'Política de Privacidade' })).toBeInTheDocument();
     expect(screen.getByText('Versão 3, publicada em 23/10/2026')).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: '1. Introdução' })).toBeInTheDocument();
     expect(screen.getByText('Texto da política.')).toBeInTheDocument();
-    // item 9: o texto fixo antigo saiu do código; só o conteúdo do painel aparece.
-    expect(screen.queryByText(/Quem é o responsável/)).not.toBeInTheDocument();
-    expect(screen.queryByText(/O site não tem formulário/)).not.toBeInTheDocument();
+    // item 9: o texto fixo saiu do código; a página tem só o título, a versão e o conteúdo do painel.
+    expect(container.textContent).toBe(
+      'Política de PrivacidadeVersão 3, publicada em 23/10/20261. IntroduçãoTexto da política.',
+    );
     expect(fetchMock).toHaveBeenCalledWith(
       expect.stringMatching(/\/public\/terms\/vigente\/politica_privacidade$/),
       expect.objectContaining({ next: { revalidate: 300 } }),

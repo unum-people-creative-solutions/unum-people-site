@@ -6,6 +6,8 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
     environment: 'jsdom',
+    // Mesmo fuso do CI (UTC): data formatada sem fuso explícito não passa por acaso na máquina local.
+    env: { TZ: 'UTC' },
     setupFiles: ['./src/test/setup.tsx'],
     globals: true,
     exclude: ['**/node_modules/**', '**/tests/e2e/**'],
