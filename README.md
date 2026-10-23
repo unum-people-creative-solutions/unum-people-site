@@ -18,7 +18,8 @@ Casa institucional da marca (`unumpeople.com.br`) e porta de entrada para o conf
 |---|---|
 | `/` | Home "A ponte": hero com a ponte que acende e o contato que chega, O vão (uma dor e um plano por linha), Como funciona, a ponte invisível e o fechamento. Componentes em `src/components/home/` (Server Components, estilos em `home.module.css`, animação só em CSS e desligada com movimento reduzido) |
 | `/sobre` | Manifesto e valores da marca |
-| `/contato`, `/privacidade` | Páginas institucionais e legais |
+| `/contato` | Página institucional |
+| `/privacidade` | Política de privacidade vigente, publicada no painel admin (lida de `GET /public/terms/vigente/politica_privacidade`, cache de 5 min; o texto não fica no código) |
 | `/termos/[termId]/[version]` | Termo de contratação (montado pelo checkout do LP Builder) |
 | `/servicos` | Redirecionamento permanente (308) para `{LP}/#planos`; não é mais página |
 
