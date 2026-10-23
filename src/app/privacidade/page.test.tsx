@@ -46,6 +46,9 @@ describe('Página de privacidade (/privacidade)', () => {
     expect(screen.getByText('Versão 3, publicada em 23/10/2026')).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: '1. Introdução' })).toBeInTheDocument();
     expect(screen.getByText('Texto da política.')).toBeInTheDocument();
+    // item 9: o texto fixo antigo saiu do código; só o conteúdo do painel aparece.
+    expect(screen.queryByText(/Quem é o responsável/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/O site não tem formulário/)).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledWith(
       expect.stringMatching(/\/public\/terms\/vigente\/politica_privacidade$/),
       expect.objectContaining({ next: { revalidate: 300 } }),
