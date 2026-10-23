@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { Section } from '@/components/Section';
-import { LP_BUILDER_URL } from '@/lib/links';
 
 export const metadata: Metadata = {
   title: 'Política de privacidade | Unum People',
@@ -10,126 +9,50 @@ export const metadata: Metadata = {
   alternates: { canonical: '/privacidade' },
 };
 
-export default function Privacidade() {
+// O texto é a política vigente publicada no painel (termos-vigentes-e-aceitos).
+// Gerada a cada visita, e não no build: o build (CI e Netlify) não depende da
+// API. A busca fica em cache por 5 minutos.
+export const dynamic = 'force-dynamic';
+
+interface PoliticaVigente {
+  term_name: string;
+  version_number: number;
+  content_html: string;
+  published_at: string;
+}
+
+async function politicaVigente(): Promise<PoliticaVigente> {
+  const resposta = await fetch(
+    `${process.env.NEXT_PUBLIC_API_GATEWAY_URL}/public/terms/vigente/politica_privacidade`,
+    { next: { revalidate: 300 } },
+  );
+  if (resposta.status === 404) {
+    notFound();
+  }
+  if (!resposta.ok) {
+    throw new Error(`Falha ao buscar a política vigente (status ${resposta.status})`);
+  }
+  return resposta.json();
+}
+
+function dataDePublicacao(iso: string): string {
+  return new Date(iso).toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+}
+
+export default async function Privacidade() {
+  const politica = await politicaVigente();
+
   return (
     <Section>
       <article className="max-w-3xl text-brand-dark/80 leading-relaxed">
-        <h1 className="text-3xl md:text-4xl font-bold text-brand-dark mb-3">
-          Política de privacidade
-        </h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-brand-dark mb-3">{politica.term_name}</h1>
         <p className="text-sm font-bold uppercase tracking-widest text-brand-dark/40 mb-10">
-          Atualizada em 22 de outubro de 2026
+          Versão {politica.version_number}, publicada em {dataDePublicacao(politica.published_at)}
         </p>
-
-        <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">Quem é o responsável</h2>
-        <p>
-          A Unum People Creative Solutions opera o site unumpeople.com.br e os
-          produtos ligados a ele, entre eles o CRM, os sites publicados para
-          clientes e as ferramentas. Para falar sobre estes dados, escreva para{' '}
-          <a className="text-brand-blue font-bold" href="mailto:atendimento@unumpeople.com.br">
-            atendimento@unumpeople.com.br
-          </a>
-          .
-        </p>
-
-        <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">O que o site coleta</h2>
-        <p className="mb-3">
-          O site não tem formulário. Quem quer contratar segue para o{' '}
-          <a className="text-brand-blue font-bold" href={LP_BUILDER_URL}>
-            configurador de páginas
-          </a>
-          , onde informa nome, e-mail, telefone e os dados de cobrança para
-          fechar o plano.
-        </p>
-        <p>
-          Se a visita chegou por anúncio, o navegador guarda na sessão os
-          identificadores dessa origem (gclid, fbclid, msclkid e parâmetros
-          utm) e os leva ao configurador. Ao contratar, o gclid, o fbclid e os
-          parâmetros utm_source, utm_medium e utm_campaign vão com os dados
-          informados para o CRM da Unum, onde a equipe acompanha a
-          contratação. Eles não são usados para montar lista de e-mail.
-        </p>
-        <p className="mt-3">
-          As páginas da Unum em{' '}
-          <a className="text-brand-blue font-bold" href={LP_BUILDER_URL}>
-            {new URL(LP_BUILDER_URL).host}
-          </a>{' '}
-          (apresentação, configurador, contratação e área do cliente) carregam a
-          tag de anúncios do Google, para medir o resultado dos anúncios da
-          Unum e mostrar anúncios a quem já visitou essas páginas. Ela usa
-          cookies do Google de dois tipos: os gravados no próprio domínio da
-          Unum (_gcl_au, _gcl_aw e _gcl_gb), que duram até 90 dias, e os
-          gravados nos domínios do Google, como o IDE em doubleclick.net, que
-          dura até 24 meses (13 meses na Europa e no Reino Unido). O endereço
-          enviado ao Google leva só os parâmetros de anúncio, sem códigos de
-          acesso nem links de pagamento. A base legal é o legítimo interesse da
-          Unum em medir os próprios anúncios. Para recusar, apague ou bloqueie
-          no navegador os cookies de {new URL(LP_BUILDER_URL).host} e de
-          doubleclick.net, ou use um bloqueador de rastreio; em{' '}
-          <a className="text-brand-blue font-bold" href="https://myadcenter.google.com/">
-            Minha Central de Anúncios do Google
-          </a>{' '}
-          você desliga os anúncios personalizados. Você também pode se opor
-          pelo endereço de atendimento abaixo. As páginas publicadas para
-          clientes não carregam essa tag.
-        </p>
-
-        <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">E-mails que enviamos</h2>
-        <p className="mb-3">
-          Não enviamos newsletter, promoção em massa nem mensagem para lista
-          comprada ou coletada fora do cadastro. O remetente das mensagens de
-          conta é <strong className="text-brand-dark">noreply@unumpeople.com.br</strong>.
-          Essa caixa não recebe resposta. Para falar com a Unum, use o endereço
-          de atendimento acima.
-        </p>
-        <p className="mb-3">
-          O destinatário é só o e-mail que a própria pessoa informou ao
-          contratar, ou o e-mail que um administrador da empresa digitou ao
-          convidar alguém para a conta. Cada evento gera uma mensagem:
-        </p>
-        <ul className="list-disc pl-6 space-y-2">
-          <li>convite de acesso, com senha temporária e o link do produto;</li>
-          <li>nova senha temporária, quando um administrador redefine a senha;</li>
-          <li>boas-vindas depois que o pagamento é confirmado, com o modo de cobrança da assinatura;</li>
-          <li>aviso de que o site daquela conta foi publicado, com o link;</li>
-          <li>avisos de cobrança para o mesmo contato: fatura em aberto e risco de exclusão da conta.</li>
-        </ul>
-        <p className="mt-3">
-          Endereço que devolve falha permanente, ou cujo dono marca a mensagem
-          como spam, entra numa lista de bloqueio e não recebe novas tentativas.
-          A equipe recebe um aviso de cada caso para corrigir o cadastro com o
-          cliente por outro canal. Encerrar a conta interrompe esses envios. As
-          regras da contratação estão nos{' '}
-          <Link href="/termos" className="text-brand-blue font-bold">
-            termos de contratação
-          </Link>
-          .
-        </p>
-
-        <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">Com quem os dados passam</h2>
-        <p>
-          A entrega dos e-mails transacionais usa a Amazon SES. A cobrança das
-          assinaturas usa o Asaas, que recebe os dados necessários para emitir
-          a cobrança. A medição dos anúncios usa o Google, que recebe pela tag
-          das páginas da Unum os dados de navegação e os cookies dele. Quando a
-          contratação é paga, o Google recebe o identificador do clique
-          (gclid), o valor da venda e o e-mail e o telefone cifrados (hash),
-          para medir o resultado dos anúncios.
-        </p>
-
-        <h2 className="text-xl font-bold text-brand-dark mt-10 mb-3">Seus pedidos</h2>
-        <p>
-          Você pode pedir acesso, correção ou exclusão dos dados ligados ao seu
-          e-mail escrevendo para{' '}
-          <a className="text-brand-blue font-bold" href="mailto:atendimento@unumpeople.com.br">
-            atendimento@unumpeople.com.br
-          </a>
-          . A página de{' '}
-          <Link href="/contato" className="text-brand-blue font-bold">
-            contato
-          </Link>{' '}
-          repete esse endereço.
-        </p>
+        <div
+          className="space-y-4 [&_h1]:hidden [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-brand-dark [&_h2]:mt-10 [&_h2]:mb-3 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ol]:list-decimal [&_ol]:pl-6 [&_a]:text-brand-blue [&_a]:font-bold [&_strong]:text-brand-dark"
+          dangerouslySetInnerHTML={{ __html: politica.content_html }}
+        />
       </article>
     </Section>
   );
