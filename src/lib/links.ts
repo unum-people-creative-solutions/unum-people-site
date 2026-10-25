@@ -16,6 +16,16 @@ export function lpPlanos(): string {
   return `${LP_BUILDER_URL}/#planos`;
 }
 
+// As páginas de produto do configurador: o blog (plano Presença) e o CRM
+// (plano Captação). Cada uma abre com o card do seu plano.
+export function lpBlog(): string {
+  return `${LP_BUILDER_URL}/blog`;
+}
+
+export function lpCrm(): string {
+  return `${LP_BUILDER_URL}/crm`;
+}
+
 // "Entrar" leva ao Portal do Cliente, a porta de entrada de todos os produtos
 // (de lá a pessoa abre o CRM, o blog e as páginas). Mesmo cuidado: só env ou padrão.
 const PORTAL_PADRAO = 'https://customer.unumpeople.com.br';

@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import Home from './page';
-import { lpConfigurar, lpPlanos } from '@/lib/links';
+import { lpBlog, lpConfigurar, lpCrm, lpPlanos } from '@/lib/links';
 
 // spec: unum-people-docs/spec/features/unum-people-site/home-a-ponte/spec.md
 const TITULO_HERO = 'Seu cliente está do outro lado. Sua página é a ponte.';
@@ -125,7 +125,11 @@ describe('Home "A ponte" — O vão (RF-02)', () => {
       expect(arco).toHaveAttribute('aria-hidden', 'true');
       expect(within(item).getByRole('heading', { level: 3, name: esperado.plano })).toBeInTheDocument();
       expect(within(item).getByText(esperado.texto)).toBeInTheDocument();
-      expect(within(item).getByRole('link', { name: `Ver o plano ${esperado.plano}` })).toHaveAttribute('href', lpPlanos());
+      // home-vao-links: cada cartão leva à página do seu produto no configurador.
+      expect(within(item).getByRole('link', { name: `Ver o plano ${esperado.plano}` })).toHaveAttribute(
+        'href',
+        [lpPlanos(), lpBlog(), lpCrm()][i],
+      );
     });
   });
 });

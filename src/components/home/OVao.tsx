@@ -1,4 +1,4 @@
-import { lpPlanos } from '@/lib/links';
+import { lpBlog, lpCrm, lpPlanos } from '@/lib/links';
 import styles from './home.module.css';
 
 const VAOS = [
@@ -6,18 +6,21 @@ const VAOS = [
     rotulo: 'Ser encontrado',
     dor: 'O cliente procura você no Google e só acha um perfil de Instagram.',
     plano: 'Página',
+    destino: lpPlanos,
     texto: 'Um endereço seu na internet, com botão de WhatsApp. Para ter onde mandar o cliente além do Instagram.',
   },
   {
     rotulo: 'Ser lembrado pelo que sabe',
     dor: 'Você explica bem o seu trabalho, mas o post some do feed em dois dias.',
     plano: 'Presença',
+    destino: lpBlog,
     texto: 'A página com blog no mesmo endereço. Cada texto vira mais uma porta para quem procura o assunto no Google.',
   },
   {
     rotulo: 'Não perder quem chega',
     dor: 'O contato chega e se perde entre as conversas do WhatsApp.',
     plano: 'Captação',
+    destino: lpCrm,
     texto: 'Formulário na página e CRM no celular, que avisa quando chega contato. Cada pessoa fica guardada até virar cliente.',
   },
 ] as const;
@@ -61,7 +64,7 @@ export const OVao = () => {
               <div className={styles.vaosPlano}>
                 <h3 className={styles.vaosPlanoTitulo}>{item.plano}</h3>
                 <p className={styles.vaosPlanoTexto}>{item.texto}</p>
-                <a className={styles.vaosPlanoLink} href={lpPlanos()}>
+                <a className={styles.vaosPlanoLink} href={item.destino()}>
                   {`Ver o plano ${item.plano}`}
                 </a>
               </div>
