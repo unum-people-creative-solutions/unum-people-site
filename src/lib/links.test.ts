@@ -32,12 +32,17 @@ describe('links do LP Builder', () => {
     const links = await carregar('https://lp.example.test/');
     expect(links.LP_BUILDER_URL).toBe('https://lp.example.test');
     expect(links.lpPlanos()).toBe('https://lp.example.test/#planos');
+    expect(links.lpBlog()).toBe('https://lp.example.test/blog');
+    expect(links.lpCrm()).toBe('https://lp.example.test/crm');
   });
 
   it('monta os links do configurador e dos planos', async () => {
     const links = await carregar();
     expect(links.lpConfigurar('institucional')).toBe('https://unumpeople.app/configurar?ref=institucional');
     expect(links.lpPlanos()).toBe('https://unumpeople.app/#planos');
+    // home-vao-links: as páginas de produto do configurador.
+    expect(links.lpBlog()).toBe('https://unumpeople.app/blog');
+    expect(links.lpCrm()).toBe('https://unumpeople.app/crm');
   });
 
   // "Entrar" leva ao Portal do Cliente, a porta de entrada de todos os produtos.
