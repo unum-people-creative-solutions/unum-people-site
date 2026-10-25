@@ -33,6 +33,7 @@ describe('links do LP Builder', () => {
     expect(links.LP_BUILDER_URL).toBe('https://lp.example.test');
     expect(links.lpPlanos()).toBe('https://lp.example.test/#planos');
     expect(links.lpBlog()).toBe('https://lp.example.test/blog');
+    expect(links.lpCrm()).toBe('https://lp.example.test/crm');
   });
 
   it('monta os links do configurador e dos planos', async () => {
