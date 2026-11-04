@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { EMPRESA } from '@/lib/empresa';
-import { lpConfigurar, lpPlanos, portalEntrar } from '@/lib/links';
+import { lpConfigurar, lpPlanos, lpSaude, portalEntrar } from '@/lib/links';
 
 const linkClasse =
   'inline-flex min-h-11 items-center text-sm font-bold text-brand-dark/60 hover:text-brand-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue transition-colors';
@@ -58,6 +58,7 @@ const Footer = () => {
           <h2 className={tituloClasse}>Produto</h2>
           <ul className="space-y-1">
             <li><a href={lpConfigurar('institucional')} className={linkClasse}>Montar minha página</a></li>
+            <li><a href={lpSaude()} className={linkClasse}>Página para saúde</a></li>
             <li>
               <a href="https://docs.unumpeople.com.br/paginas/" target="_blank" rel="noopener noreferrer" className={linkClasse}>
                 Central de ajuda
