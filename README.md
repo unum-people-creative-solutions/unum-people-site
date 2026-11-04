@@ -28,7 +28,7 @@ Casa institucional da marca (`unumpeople.com.br`) e porta de entrada para o conf
 |---|---|---|
 | `NEXT_PUBLIC_LP_BUILDER_URL` | `https://unumpeople.app` | Endereço do LP Builder (sem barra final). Lida só em `src/lib/links.ts`; é embutida no build, então muda com novo build. |
 
-A identificação da empresa exibida no rodapé fica em `src/lib/empresa.ts` (cópia da constante do LP Builder).
+A identificação da empresa exibida no rodapé fica em `src/lib/empresa.ts` (cópia da constante do LP Builder). Na navegação **Produto** do rodapé, **Página para saúde** leva a `{LP}/saude` por `lpSaude()`, logo depois de **Montar minha página**.
 
 ## 🛠️ Stack Técnica
 - **Framework**: [Next.js](https://nextjs.org/)

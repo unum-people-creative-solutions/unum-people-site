@@ -146,7 +146,8 @@ describe('Home "A ponte" — Como funciona (RF-03)', () => {
     expect(itens).toHaveLength(3);
 
     const passos = [
-      ['Escolha o modelo', 'Dez modelos, cada um pensado para um tipo de negócio, do chaveiro ao consultório.'],
+      // lp-saude-psicologia CA-45: a vitrine passa a onze modelos.
+      ['Escolha o modelo', 'Onze modelos, cada um pensado para um tipo de negócio, do chaveiro ao consultório.'],
       ['Escreva do seu jeito', 'Troque textos, fotos e cores. Você vê a página mudar enquanto escreve.'],
       ['Publique e receba', 'Pague só quando decidir publicar. O botão de WhatsApp já sai funcionando.'],
     ];

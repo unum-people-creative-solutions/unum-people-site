@@ -45,6 +45,14 @@ describe('links do LP Builder', () => {
     expect(links.lpCrm()).toBe('https://unumpeople.app/crm');
   });
 
+  // lp-saude-psicologia CA-43: a página de saúde do configurador.
+  it('lpSaude leva a /saude do LP Builder, com e sem env', async () => {
+    const semEnv = await carregar();
+    expect(semEnv.lpSaude()).toBe('https://unumpeople.app/saude');
+    const comEnv = await carregar('https://lp.example.test/');
+    expect(comEnv.lpSaude()).toBe('https://lp.example.test/saude');
+  });
+
   // "Entrar" leva ao Portal do Cliente, a porta de entrada de todos os produtos.
   it('Entrar leva ao Portal do Cliente', async () => {
     const links = await carregar();
