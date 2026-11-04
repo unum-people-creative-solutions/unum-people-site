@@ -26,6 +26,11 @@ export function lpCrm(): string {
   return `${LP_BUILDER_URL}/crm`;
 }
 
+// A página para consultório e profissionais de saúde (não é plano: fica no rodapé).
+export function lpSaude(): string {
+  return `${LP_BUILDER_URL}/saude`;
+}
+
 // "Entrar" leva ao Portal do Cliente, a porta de entrada de todos os produtos
 // (de lá a pessoa abre o CRM, o blog e as páginas). Mesmo cuidado: só env ou padrão.
 const PORTAL_PADRAO = 'https://customer.unumpeople.com.br';

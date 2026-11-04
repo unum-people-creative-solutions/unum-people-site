@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react';
 import Footer from './Footer';
 import { describe, it, expect } from 'vitest';
-import { lpConfigurar, lpPlanos } from '@/lib/links';
+import { lpConfigurar, lpPlanos, lpSaude } from '@/lib/links';
 
 describe('Footer', () => {
   it('deve renderizar a logo texto', () => {
@@ -60,6 +60,18 @@ describe('Footer', () => {
       'href',
       'https://tools.unumpeople.com.br',
     );
+  });
+
+  // lp-saude-psicologia CA-44: Página para saúde, logo depois de Montar minha página, na mesma aba.
+  it('deve trazer Página para saúde na coluna Produto, logo depois de Montar minha página', () => {
+    render(<Footer />);
+    const produto = screen.getByRole('navigation', { name: 'Produto' });
+    const saude = within(produto).getByRole('link', { name: 'Página para saúde' });
+    expect(saude).toHaveAttribute('href', lpSaude());
+    expect(saude).not.toHaveAttribute('target');
+
+    const nomes = within(produto).getAllByRole('link').map((link) => link.textContent?.trim());
+    expect(nomes.indexOf('Página para saúde')).toBe(nomes.indexOf('Montar minha página') + 1);
   });
 
   it('deve abrir os links externos em nova aba com rel noopener noreferrer', () => {
