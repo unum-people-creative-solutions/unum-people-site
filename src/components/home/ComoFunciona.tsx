@@ -5,7 +5,7 @@ const PASSOS = [
   {
     n: 1,
     titulo: 'Escolha o modelo',
-    texto: 'Dez modelos, cada um pensado para um tipo de negócio, do chaveiro ao consultório.',
+    texto: 'Onze modelos, cada um pensado para um tipo de negócio, do chaveiro ao consultório.',
   },
   {
     n: 2,
