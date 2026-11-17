@@ -7,7 +7,7 @@ const VAOS = [
     dor: 'O cliente procura você no Google e só acha um perfil de Instagram.',
     plano: 'Página',
     destino: lpPlanos,
-    texto: 'Um endereço seu na internet, com botão de WhatsApp. Para ter onde mandar o cliente além do Instagram.',
+    texto: 'Um endereço seu na internet, com botão de WhatsApp e o seu próprio domínio. Para ter onde mandar o cliente além do Instagram.',
   },
   {
     rotulo: 'Ser lembrado pelo que sabe',
