@@ -4,18 +4,18 @@ import styles from './home.module.css';
 const PASSOS = [
   {
     n: 1,
-    titulo: 'Escolha o modelo',
-    texto: 'Onze modelos, cada um pensado para um tipo de negócio, do chaveiro ao consultório.',
+    titulo: 'Conte do seu negócio',
+    texto: 'Escreva o nome, o que você faz e a cidade. A IA monta os textos, o visual e as seções em segundos. Quer outro visual? Troque entre onze modelos quando quiser, e o que você escreveu fica.',
   },
   {
     n: 2,
     titulo: 'Escreva do seu jeito',
-    texto: 'Troque textos, fotos e cores. Você vê a página mudar enquanto escreve.',
+    texto: 'Toque num texto para mudar, troque fotos e cores, ou peça a mudança em palavras e aceite só o que gostar. Você vê a página mudar na hora.',
   },
   {
     n: 3,
     titulo: 'Publique e receba',
-    texto: 'Pague só quando decidir publicar. O botão de WhatsApp já sai funcionando.',
+    texto: 'Pague só quando decidir publicar. O botão de WhatsApp já sai funcionando e, depois de contratar, você continua editando e publicando quando quiser, sem pagar por alteração.',
   },
 ] as const;
 
@@ -26,7 +26,7 @@ export const ComoFunciona = () => {
         <div className={styles.cabeca}>
           <span className={`${styles.rotulo} ${styles.cabecaRotulo}`}>Como funciona</span>
           <h2 id="como-titulo" className={styles.cabecaTitulo}>
-            Do modelo ao primeiro contato.
+            Da ideia ao primeiro contato.
           </h2>
         </div>
         <ol className={styles.passos}>

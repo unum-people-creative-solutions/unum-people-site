@@ -17,7 +17,7 @@ export const Hero = () => {
             <span className={`${styles.linha} ${styles.acende}`}>Sua página é a ponte.</span>
           </h1>
           <p className={styles.heroApoio}>
-            Monte em minutos, com o modelo do seu tipo de negócio e o botão de WhatsApp pronto. Você vê como fica antes de pagar.
+            Conte o que o seu negócio faz e a IA monta a página em segundos, com o botão de WhatsApp pronto. Você vê como fica antes de pagar.
           </p>
           <div className={styles.heroAcoes}>
             <a className={`${styles.botao} ${styles.botaoClaro}`} href={lpConfigurar('institucional')}>

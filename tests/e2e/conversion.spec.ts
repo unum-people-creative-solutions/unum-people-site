@@ -25,11 +25,12 @@ test.describe('Fluxo de conversão', () => {
     await expect(verPlanos).toBeVisible();
     await expect(verPlanos).toHaveAttribute('href', /\/#planos$/);
 
-    // Cada vão leva ao plano correspondente na vitrine.
+    // Cada vão leva à página do seu produto no LP Builder: planos, blog e CRM.
     const verOPlano = page.getByRole('link', { name: /^Ver o plano / });
     await expect(verOPlano).toHaveCount(3);
-    for (const link of await verOPlano.all()) {
-      await expect(link).toHaveAttribute('href', /\/#planos$/);
+    const destinos = [/\/#planos$/, /\/blog$/, /\/crm$/];
+    for (const [i, link] of (await verOPlano.all()).entries()) {
+      await expect(link).toHaveAttribute('href', destinos[i]);
     }
     await expect(page.getByText(/R\$\s?\d/)).toHaveCount(0);
   });

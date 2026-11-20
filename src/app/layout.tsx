@@ -12,7 +12,7 @@ const poppins = Poppins({
 });
 
 const TITULO = "Unum People — página com WhatsApp para o seu negócio";
-const DESCRICAO = "Monte sua página, veja como fica e só pague para publicar. O caminho mais curto entre você e o seu cliente.";
+const DESCRICAO = "Conte o que você faz e a IA monta a sua página. Veja como fica, só pague para publicar e edite quando quiser.";
 
 export const metadata: Metadata = {
   title: TITULO,
