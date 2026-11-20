@@ -28,7 +28,7 @@ describe('Home "A ponte" — hero (RF-01)', () => {
     expect(within(regiao).getByText('Páginas com WhatsApp para profissionais e pequenos negócios')).toBeInTheDocument();
     expect(
       within(regiao).getByText(
-        'Monte em minutos, com o modelo do seu tipo de negócio e o botão de WhatsApp pronto. Você vê como fica antes de pagar.',
+        'Conte o que o seu negócio faz e a IA monta a página em segundos, com o botão de WhatsApp pronto. Você vê como fica antes de pagar.',
       ),
     ).toBeInTheDocument();
   });
@@ -71,7 +71,7 @@ describe('Home "A ponte" — estrutura (RF-05)', () => {
     });
     expect(h2s).toEqual([
       'Entre você e o cliente sempre existe uma distância.',
-      'Do modelo ao primeiro contato.',
+      'Da ideia ao primeiro contato.',
       'A tecnologia é a ponte invisível.',
       'Do outro lado, alguém está procurando o que você faz.',
     ]);
@@ -137,7 +137,7 @@ describe('Home "A ponte" — O vão (RF-02)', () => {
 describe('Home "A ponte" — Como funciona (RF-03)', () => {
   it('T06: três passos em lista ordenada, com botão e a linha de apoio', () => {
     render(<Home />);
-    const como = secao('Do modelo ao primeiro contato.');
+    const como = secao('Da ideia ao primeiro contato.');
     expect(within(como).getByText('Como funciona')).toBeInTheDocument();
 
     const lista = within(como).getByRole('list');
@@ -147,9 +147,9 @@ describe('Home "A ponte" — Como funciona (RF-03)', () => {
 
     const passos = [
       // lp-saude-psicologia CA-45: a vitrine passa a onze modelos.
-      ['Escolha o modelo', 'Onze modelos, cada um pensado para um tipo de negócio, do chaveiro ao consultório.'],
-      ['Escreva do seu jeito', 'Troque textos, fotos e cores. Você vê a página mudar enquanto escreve.'],
-      ['Publique e receba', 'Pague só quando decidir publicar. O botão de WhatsApp já sai funcionando.'],
+      ['Conte do seu negócio', 'Escreva o nome, o que você faz e a cidade. A IA monta os textos, o visual e as seções em segundos. Quer outro visual? Troque entre onze modelos quando quiser, e o que você escreveu fica.'],
+      ['Escreva do seu jeito', 'Toque num texto para mudar, troque fotos e cores, ou peça a mudança em palavras e aceite só o que gostar. Você vê a página mudar na hora.'],
+      ['Publique e receba', 'Pague só quando decidir publicar. O botão de WhatsApp já sai funcionando e, depois de contratar, você continua editando e publicando quando quiser, sem pagar por alteração.'],
     ];
     passos.forEach(([titulo, texto], i) => {
       const numero = within(itens[i]).getByText(String(i + 1));
