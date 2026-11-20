@@ -10,7 +10,7 @@ import RootLayout, { metadata } from './layout';
 
 const TITULO = 'Unum People — página com WhatsApp para o seu negócio';
 const DESCRICAO =
-  'Monte sua página, veja como fica e só pague para publicar. O caminho mais curto entre você e o seu cliente.';
+  'Conte o que você faz e a IA monta a sua página. Veja como fica, só pague para publicar e edite quando quiser.';
 
 function lerJsonLd(): Record<string, unknown> {
   const html = renderToStaticMarkup(
